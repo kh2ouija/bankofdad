@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @transaction.customer_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @transaction.operation %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @transaction.amount %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @transaction.description %>
+</p>
+
+<%= link_to 'Back', customer_transactions_path(@customer) %>
