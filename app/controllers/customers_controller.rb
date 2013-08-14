@@ -22,11 +22,15 @@ class CustomersController < ApplicationController
   # POST /customers
   def create
     @customer = Customer.new(customer_params)
-    @customer.balance = 0
-
-    if @customer.save
-      redirect_to @customer, notice: 'Customer was successfully created.'
-    else
+    account = Account.default
+    account.customer = @customer
+    begin
+      Customer.transaction do
+        account.save!
+        @customer.save!
+        redirect_to @customer, notice: 'Customer was successfully created.'
+      end
+    rescue ActiveRecord::RecordInvalid
       render action: 'new'
     end
   end

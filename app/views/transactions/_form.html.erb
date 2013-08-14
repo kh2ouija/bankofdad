@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+    <%= f.text_field :amount %> <%= @customer.account.currency %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

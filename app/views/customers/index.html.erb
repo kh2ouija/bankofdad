@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Balance</th>
+        <th>Net worth</th>
         <th></th>
         <th></th>
         <th></th>
@@ -16,9 +16,9 @@
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.name %></td>
-          <td><%= customer.balance %></td>
+          <td><%= customer.account.balance %> <%= customer.account.currency %></td>
           <td><%= link_to 'Show', customer %></td>
-          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

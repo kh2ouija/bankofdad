@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
     rescue Exception => e
       puts e
       @transaction.valid?
-      @transaction.errors.add(:amount, 'insufficient funds') if e.kind_of? Customer::InsufficientFunds
+      @transaction.errors.add(:amount, 'exceeds available funds') if e.kind_of? Account::InsufficientFunds
       render action: 'new'
     end
   end
