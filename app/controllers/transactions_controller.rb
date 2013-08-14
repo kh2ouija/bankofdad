@@ -22,25 +22,15 @@ class TransactionsController < ApplicationController
   # POST /transactions
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.customer = @customer
-    ActiveRecord::Base.transaction do
-      unless @transaction.amount.nil?
-        if @transaction.operation == 'deposit'
-          @customer.balance += @transaction.amount
-        elsif @transaction.operation == 'withdraw'
-          @customer.balance -= @transaction.amount
-        end
-      end
-      @customer.save!
-      @transaction.save!
+    begin
+      @customer.apply_transaction(@transaction)
       redirect_to customer_path(@customer, @transaction), notice: 'Transaction was successfully created.'
+    rescue Exception => e
+      puts e
+      @transaction.valid?
+      @transaction.errors.add(:amount, 'insufficient funds') if e.kind_of? Customer::InsufficientFunds
+      render action: 'new'
     end
-  rescue ActiveRecord::RecordInvalid => e
-    @transaction.valid?
-    if @customer.balance < 0
-      @transaction.errors.add(:amount, 'insufficient funds')
-    end
-    render action: 'new'
   end
 
   # PATCH/PUT /transactions/1
