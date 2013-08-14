@@ -1,7 +1,8 @@
 Mrbank::Application.routes.draw do
-  
+    
   resources :customers do
     resources :transactions
+    resource :allowance
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

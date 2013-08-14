@@ -1,13 +1,14 @@
 class Customer < ActiveRecord::Base
 
+  has_many :transactions
+  has_one :allowance
+
   validates_presence_of :name, :balance
   validate :balance_must_be_positive
 
-  has_many :transactions
-
   class InsufficientFunds < Exception; end;
 
-  def apply_transaction(transaction)
+  def record(transaction)
   	Customer.transaction do
       transaction.customer = self
       if transaction.operation == 'deposit'

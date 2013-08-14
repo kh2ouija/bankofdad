@@ -7,9 +7,31 @@
 
 <p>
   <strong>Balance:</strong>
-  <%= @customer.balance %> 
-  <%= link_to 'New transaction', new_customer_transaction_path(@customer) %>
+  <%= @customer.balance %>
+  <br/>
+  <%= link_to 'Deposit / Withdraw', new_customer_transaction_path(@customer) %> | 
   <%= link_to 'History', customer_transactions_path(@customer) %>
+</p>
+
+<p>
+  <strong>Allowance:</strong>
+  <% if @customer.allowance.nil? %>
+    No allowance set.
+    <br/>
+    <%= link_to 'Setup allowance', new_customer_allowance_path(@customer) %>
+  <% else %>
+    <p>
+  	  <strong>Interval:</strong>
+      <%= @customer.allowance.interval %>
+    </p>
+    <p>
+      <strong>Amount:</strong>
+      <%= @customer.allowance.amount %>
+    </p>
+
+    <%= link_to 'Edit', edit_customer_allowance_path(@customer, @allowance) %> | 
+    <%= link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </p>
 
 <%= link_to 'Back', customers_path %>

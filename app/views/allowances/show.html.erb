@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @allowance.customer_id %>
+</p>
+
+<p>
+  <strong>Interval:</strong>
+  <%= @allowance.interval %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @allowance.amount %>
+</p>
+
+<%= link_to 'Edit', edit_allowance_path(@allowance) %> |
+<%= link_to 'Back', allowances_path %>

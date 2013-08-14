@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     begin
-      @customer.apply_transaction(@transaction)
+      @customer.record(@transaction)
       redirect_to customer_path(@customer, @transaction), notice: 'Transaction was successfully created.'
     rescue Exception => e
       puts e
@@ -49,7 +49,9 @@ class TransactionsController < ApplicationController
   end
 
   def validate
-    errors.add(:amount, 'insufficient funds') if operation == 'withdraw' and customer.balance == 0
+    if operation == 'withdraw' and customer.balance == 0
+      errors.add(:amount, 'insufficient funds') 
+    end
   end
 
   private

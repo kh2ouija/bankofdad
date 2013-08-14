@@ -11,20 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130812152943) do
+ActiveRecord::Schema.define(version: 20130814131039) do
+
+  create_table "allowances", force: true do |t|
+    t.integer  "customer_id",                         null: false
+    t.string   "interval",                            null: false
+    t.decimal  "amount",      precision: 8, scale: 2, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "customers", force: true do |t|
-    t.string   "name"
-    t.decimal  "balance"
+    t.string   "name",                               null: false
+    t.decimal  "balance",    precision: 8, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "transactions", force: true do |t|
-    t.integer  "customer_id"
-    t.string   "operation"
-    t.decimal  "amount"
-    t.string   "description"
+    t.integer  "customer_id",                         null: false
+    t.string   "operation",                           null: false
+    t.decimal  "amount",      precision: 8, scale: 2, null: false
+    t.string   "description",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
