@@ -1,16 +1,7 @@
 class AllowancesController < ApplicationController
-  before_action :set_customer, only: [:new, :create, :edit, :update, :destroy]
-  # before_action :set_allowance, only: [:edit, :update]  
-
-  # GET /allowances
-  def index
-    @allowances = Allowance.all
-  end
-
-  # GET /allowances/1
-  def show
-  end
-
+  
+  before_action :set_customer, only: [:create, :edit, :update, :destroy]
+  
   # GET /allowances/new
   def new
     @allowance = Allowance.new
@@ -59,6 +50,6 @@ class AllowancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def allowance_params
-      params.require(:allowance).permit(:customer_id, :interval, :amount)
+      params.require(:allowance).permit(:interval, :amount)
     end
 end

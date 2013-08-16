@@ -9,7 +9,7 @@ namespace :mrbank do
       end
       begin
         allowance.customer.record(transaction)
-        puts "Allowance for #{allowance.customer.name} recorded ok."
+        puts "Deposited #{allowance.amount} into #{allowance.customer.name}'s account."
       rescue Exception => e
         puts "Error recording allowance for #{allowance.customer.name}:"
         puts e

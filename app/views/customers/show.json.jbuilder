@@ -1,1 +1,1 @@
-json.extract! @customer, :name, :balance, :created_at, :updated_at
+json.extract! @customer, :name, :created_at, :updated_at

@@ -1,24 +1,14 @@
 Mrbank::Application.routes.draw do
+
+  root 'customers#index'
     
   resources :customers do
     resources :transactions
     resource :allowance
   end
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'customers#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  get 'customers/:id/account/edit' => 'accounts#edit', as: :edit_customer_account
+  patch 'customers/:id/account' => 'accounts#update', as: :account
 
   # Example resource route with options:
   #   resources :products do

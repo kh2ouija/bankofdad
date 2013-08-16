@@ -9,6 +9,7 @@
   <strong>Account</strong>
   <br/>
   Balance: <%= @customer.account.balance %> <%= @customer.account.currency %>
+  <%= link_to 'Settings', edit_customer_account_path(@customer) %>
   <br/>
   <%= link_to 'Deposit / Withdraw', new_customer_transaction_path(@customer) %> | 
   <%= link_to 'History', customer_transactions_path(@customer) %>
