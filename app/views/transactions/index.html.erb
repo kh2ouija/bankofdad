@@ -16,7 +16,7 @@
         <tr>
           <td><%= transaction.created_at.to_s(:long) %></td>
           <td><%= transaction.operation %></td>
-          <td><%= transaction.amount %></td>
+          <td><%= transaction.amount %> <%= @customer.account.currency %></td>
           <td><%= transaction.description %></td>
         </tr>
       <% end %>

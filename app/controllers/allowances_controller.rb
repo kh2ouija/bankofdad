@@ -39,7 +39,6 @@ class AllowancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_allowance
       @allowance = Allowance.find(params[:id])
     end
@@ -48,7 +47,6 @@ class AllowancesController < ApplicationController
       @customer = Customer.find(params[:customer_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def allowance_params
       params.require(:allowance).permit(:interval, :amount)
     end
