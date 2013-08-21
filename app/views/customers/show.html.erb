@@ -1,36 +1,41 @@
-<p id="notice"><%= notice %></p>
+<% if notice %><div class="alert alert-success"><%= notice %></div><% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
+<h1><%= @customer.name %></h1>
 
-<p>
-  <strong>Account</strong>
-  <br/>
-  Balance: <%= @customer.account.balance %> <%= @customer.account.currency %>
-  <br/>
-  Interest: <%= @customer.account.interest %>%, on every Saturday
-  <%= link_to 'Settings', edit_customer_account_path(@customer) %>
-  <br/>
-  <%= link_to 'Deposit / Withdraw', new_customer_transaction_path(@customer) %> | 
-  <%= link_to 'History', customer_transactions_path(@customer) %>
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">Account<%= link_to 'Settings', edit_customer_account_path(@customer), { class: 'btn btn-default btn-xs pull-right' } %></div>
+  <ul class="list-group">
+    <li class="list-group-item">Balance: <%= @customer.account.balance %> <%= @customer.account.currency %></li>
+    <li class="list-group-item">Interest: <%= @customer.account.interest %>%, on every Saturday</li>
+  </ul>
+  <div class="panel-footer">    
+    <%= link_to 'Make a transaction', new_customer_transaction_path(@customer) %> | 
+    <%= link_to 'Transactions history', customer_transactions_path(@customer) %>
+  </div>
+</div>
 
-<p>
-  <strong>Allowance</strong>
-  <br/>
+<div class="panel panel-primary">
+  <div class="panel-heading">Allowance</div>
+
   <% if @customer.allowance.nil? %>
-    No allowance set.
-    <br/>
-    <%= link_to 'Setup allowance', new_customer_allowance_path(@customer) %>
+    <div class="panel-body">
+      No allowance set.
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Setup allowance', new_customer_allowance_path(@customer) %>
+    </div>
   <% else %>
-    <%= @customer.allowance.amount %> <%= @customer.account.currency %>,
-    on every <%=  Date::DAYNAMES[@customer.allowance.wday] %>
-    <br/>
-    <%= link_to 'Edit', edit_customer_allowance_path(@customer, @allowance) %> | 
-    <%= link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="panel-body">
+      <%= @customer.allowance.amount %> <%= @customer.account.currency %>,
+      on every <%=  Date::DAYNAMES[@customer.allowance.wday] %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Modify allowance', edit_customer_allowance_path(@customer, @allowance) %> | 
+      <%= link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
   <% end %>
-</p>
-
-<%= link_to 'Back', customers_path %>
+  </div>
+</div>
+<div>
+  <%= link_to 'Back', customers_path %>
+</div>

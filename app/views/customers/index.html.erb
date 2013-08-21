@@ -1,30 +1,26 @@
-<h1>Listing customers</h1>
-
-<% unless @customers.empty? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Net worth</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @customers.each do |customer| %>
+<div class="panel panel-primary ">
+  <div class="panel-heading">Your customers</div>
+  <% unless @customers.empty? %>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= customer.name %></td>
-          <td><%= customer.account.balance %> <%= customer.account.currency %></td>
-          <td><%= link_to 'Show', customer %></td>
-          <td><%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Name</th>
+          <th>Net worth</th>
+          <th colspan="2">Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.name %></td>
+            <td><%= customer.account.balance %> <%= customer.account.currency %></td>
+            <td><%= link_to 'Show', customer, { class: 'btn btn-default btn-sm' } %></td>
+            <td><%= link_to 'Delete', customer, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+<%= link_to 'New Customer', new_customer_path, { class: 'btn btn-primary' } %>
 
-<br>
-
-<%= link_to 'New Customer', new_customer_path %>

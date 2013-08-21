@@ -1,6 +1,6 @@
 <%= form_for(@account) do |f| %>
   <% if @account.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
 
       <ul>
@@ -11,15 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :currency %><br>
-    <%= f.text_field :currency %>
+    <%= f.text_field :currency, class: 'form-control'  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :interest %><br>
-    <%= f.text_field :interest %> %
+    <div class="input-group">
+      <%= f.text_field :interest, class: 'form-control' %>
+      <span class='input-group-addon'>%</span>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.submit 'Confirm', class: 'btn btn-primary' %>
   </div>
 <% end %>

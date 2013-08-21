@@ -1,6 +1,6 @@
 <%= form_for(@allowance, url: customer_allowance_url) do |f| %>
   <% if @allowance.errors.any? %>
-    <div id="error_explanation">
+    <div id="alert alert-danger">
       <h2><%= pluralize(@allowance.errors.count, "error") %> prohibited this allowance from being saved:</h2>
 
       <ul>
@@ -11,15 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label 'Every week, on ' %>
-    <%= f.select :wday, Date::DAYNAMES.map { |d| [d, Date::DAYNAMES.index(d)]} %>
+  <div class="form-group">
+    <%= f.label 'Every week on' %>
+    <%= f.select :wday, Date::DAYNAMES.map { |d| [d, Date::DAYNAMES.index(d)]}, {}, { class: 'form-control' } %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+    <div class="input-group">
+      <%= f.text_field :amount, class: 'form-control' %>
+      <span class="input-group-addon"><%= @allowance.customer.account.currency %></span>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.submit 'Confirm', class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 <%= form_for([@customer, @transaction]) do |f| %>
   <% if @transaction.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
       <ul>
@@ -11,19 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :operation %><br>
-    <%= f.select :operation, %w{ deposit withdraw } %>
+    <%= f.select :operation, %w{ deposit withdraw }, {}, { class: 'form-control' } %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :amount %><br>
-    <%= f.text_field :amount %> <%= @customer.account.currency %>
+    <div class="input-group">
+      <%= f.text_field :amount, class: 'form-control' %>
+      <span class="input-group-addon"><%= @customer.account.currency %></span>
+    </div>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, class: 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.submit 'Confirm', class: 'btn btn-primary' %>
   </div>
 <% end %>
