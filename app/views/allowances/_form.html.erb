@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :interval %><br>
-    <%= f.select :interval, %w{ weekly monthly } %>
+    <%= f.label 'Every week, on ' %>
+    <%= f.select :wday, Date::DAYNAMES.map { |d| [d, Date::DAYNAMES.index(d)]} %>
   </div>
   <div class="field">
     <%= f.label :amount %><br>

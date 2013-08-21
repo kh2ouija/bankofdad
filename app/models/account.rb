@@ -2,10 +2,10 @@ class Account < ActiveRecord::Base
 
   belongs_to :customer
 
-  validates_presence_of :balance, :currency
-  validates_numericality_of :balance
-  validate :balance_must_be_positive
-
+  validates :currency, presence: true
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validates :interest, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  
   class InsufficientFunds < Exception
   end
 
@@ -13,6 +13,7 @@ class Account < ActiveRecord::Base
     Account.new do |a|
       a.balance = 0
       a.currency = 'lei'
+      a.interest = 0
     end
   end
 
@@ -25,9 +26,4 @@ class Account < ActiveRecord::Base
     self.balance -= amount
   end
   
-  protected
-  def balance_must_be_positive
-    errors.add(:balance, 'must be positive') if balance.nil? or balance < 0
-  end
-
 end

@@ -27,11 +27,12 @@ class CustomersController < ApplicationController
     account.customer = @customer
     begin
       Customer.transaction do
-        account.save!
         @customer.save!
+        account.save!
         redirect_to @customer, notice: 'Customer was successfully created.'
       end
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid => e
+      puts e
       render action: 'new'
     end
   end

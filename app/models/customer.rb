@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
   has_many :transactions
   has_one :allowance
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   def record(transaction)
   	Customer.transaction do
@@ -17,6 +17,10 @@ class Customer < ActiveRecord::Base
       account.save!
       transaction.save!
   	end
+  end
+
+  def net_worth
+    account.balance
   end
   
 end

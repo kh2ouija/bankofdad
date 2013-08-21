@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 20130814201354) do
     t.integer  "customer_id",                         null: false
     t.decimal  "balance",     precision: 8, scale: 2, null: false
     t.string   "currency",                            null: false
+    t.integer  "interest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "allowances", force: true do |t|
     t.integer  "customer_id",                         null: false
-    t.string   "interval",                            null: false
+    t.integer  "wday"
     t.decimal  "amount",      precision: 8, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

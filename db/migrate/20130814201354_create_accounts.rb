@@ -4,6 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.integer :customer_id, null: false
       t.decimal :balance, null: false, precision: 8, scale: 2
       t.string :currency, null: false
+      t.integer :interest
 
       t.timestamps
     end

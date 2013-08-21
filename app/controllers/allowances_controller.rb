@@ -48,6 +48,6 @@ class AllowancesController < ApplicationController
     end
 
     def allowance_params
-      params.require(:allowance).permit(:interval, :amount)
+      params.require(:allowance).permit(:wday, :amount)
     end
 end

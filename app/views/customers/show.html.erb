@@ -9,6 +9,8 @@
   <strong>Account</strong>
   <br/>
   Balance: <%= @customer.account.balance %> <%= @customer.account.currency %>
+  <br/>
+  Interest: <%= @customer.account.interest %>%, on every Saturday
   <%= link_to 'Settings', edit_customer_account_path(@customer) %>
   <br/>
   <%= link_to 'Deposit / Withdraw', new_customer_transaction_path(@customer) %> | 
@@ -23,7 +25,8 @@
     <br/>
     <%= link_to 'Setup allowance', new_customer_allowance_path(@customer) %>
   <% else %>
-    <%= @customer.allowance.amount %> <%= @customer.account.currency %>, <%= @customer.allowance.interval %>
+    <%= @customer.allowance.amount %> <%= @customer.account.currency %>,
+    on every <%=  Date::DAYNAMES[@customer.allowance.wday] %>
     <br/>
     <%= link_to 'Edit', edit_customer_allowance_path(@customer, @allowance) %> | 
     <%= link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' } %>
