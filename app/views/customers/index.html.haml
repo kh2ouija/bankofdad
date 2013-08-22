@@ -1,6 +1,8 @@
 .panel.panel-primary
   .panel-heading Your customers
-  - unless @customers.empty?
+  - if @customers.empty?
+    %p No customers.
+  - else
     %table.table.table-striped
       %thead
         %tr

@@ -14,6 +14,7 @@ class Customer < ActiveRecord::Base
       elsif transaction.operation == 'withdraw'
         account.withdraw(transaction.amount)
       end
+      transaction.rbalance = account.balance
       account.save!
       transaction.save!
   	end

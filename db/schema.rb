@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20130814201354) do
     t.integer  "customer_id",                         null: false
     t.string   "operation",                           null: false
     t.decimal  "amount",      precision: 8, scale: 2, null: false
+    t.decimal  "rbalance",    precision: 8, scale: 2, null: false
     t.string   "description",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"

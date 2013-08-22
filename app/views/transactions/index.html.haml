@@ -1,18 +1,21 @@
-- unless @customer.transactions.empty?
+- if @customer.transactions.empty?
+  %p No transactions found.
+- else
   %table.table.table-striped
     %thead
       %tr
         %th Date
         %th Operation
-        %th Amount
+        %th Amount        
+        %th Balance
         %th Description
-
     %tbody
-      - @customer.transactions.each do |transaction|
+      - @customer.transactions.reverse.each do |transaction|
         %tr
           %td= transaction.created_at.to_s(:long)
           %td= transaction.operation
           %td= "#{transaction.amount} #{@customer.account.currency}"
+          %td= "#{transaction.rbalance} #{@customer.account.currency}"
           %td= transaction.description
 
 %br
