@@ -1,8 +1,3 @@
-- if notice
-  .alert.alert-success= notice
-
-%h1= @customer.name
-
 .panel.panel-primary
   .panel-heading
     Account    
@@ -27,7 +22,7 @@
     .panel-body No allowance set.
     .panel-footer= link_to 'Setup allowance', new_customer_allowance_path(@customer)
   - else
-    .panel-body= "#{@customer.allowance.amount @customer.account.currency}, on every #{Date::DAYNAMES[@customer.allowance.wday]}"
+    .panel-body= "#{@customer.allowance.amount} #{@customer.account.currency}, on every #{Date::DAYNAMES[@customer.allowance.wday]}"
     .panel-footer
       = link_to 'Modify allowance', edit_customer_allowance_path(@customer, @allowance)
       | 

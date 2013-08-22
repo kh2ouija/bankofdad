@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
 
   # GET /customers/1/account/edit
   def edit
+    @page_title = 'Account settings'
   end
 
   # PATCH /customers/1/account

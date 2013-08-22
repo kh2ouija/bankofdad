@@ -5,11 +5,13 @@ class TransactionsController < ApplicationController
 
   # GET /transactions
   def index
+    @page_title = 'Transactions history'
   end
 
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @page_title = 'New transaction'
   end
 
   # POST /transactions

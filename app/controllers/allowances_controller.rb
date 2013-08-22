@@ -5,11 +5,13 @@ class AllowancesController < ApplicationController
   # GET /allowances/new
   def new
     @allowance = Allowance.new
+    @page_title = 'Setup allowance'
   end
 
   # GET /allowances/1/edit
   def edit
     @allowance = @customer.allowance
+    @page_title = 'Modify allowance'
   end
 
   # POST /allowances

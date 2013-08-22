@@ -1,18 +1,33 @@
 !!!
 %html
   %head
-    %title Mr. Bank
+    %title= @page_title || 'Mr. Bank'
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     / = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
     = csrf_meta_tags
     = stylesheet_link_tag 'bootstrap.min', media: 'screen'
     = stylesheet_link_tag 'jumbotron-narrow', media: 'screen'
+    = stylesheet_link_tag 'bootstrap-theme.min', media: 'screen'
 
     /[if lt IE9]
       = javascript_include_tag 'html5shiv'
       = javascript_include_tag 'respond.min'
   %body
     .container
+      .header
+        %ul.nav.nav-pills.pull-right
+          %li.active 
+            = link_to 'Home', customers_path
+          %li
+            %a{href: '#'} About
+          %li
+            %a{href: '#'} Contact
+        %h3= @page_title || 'Mr. Bank'
+      - if notice
+        .alert.alert-success.alert-dismissable
+          %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+            &times;
+          = notice
       = yield
     %script{src: '//code.jquery.com/jquery.js'}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
