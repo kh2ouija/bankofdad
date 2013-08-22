@@ -43,3 +43,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'haml'
+gem 'thin'
+gem 'quiet_assets', group: :development

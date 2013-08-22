@@ -1,6 +1,6 @@
 Mrbank::Application.routes.draw do
 
-  root 'customers#index'
+  root 'dashboard#show'
     
   resources :customers do
     resources :transactions

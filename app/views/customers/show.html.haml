@@ -1,0 +1,35 @@
+- if notice
+  .alert.alert-success= notice
+
+%h1= @customer.name
+
+.panel.panel-primary
+  .panel-heading
+    Account    
+  %ul.list-group
+    %li.list-group-item= "Balance: #{@customer.account.balance} #{@customer.account.currency}"
+    %li.list-group-item
+      - if @customer.account.interest == 0
+        No interest.
+      -else
+        = "Interest: #{@customer.account.interest}%, on every Saturday"
+
+  .panel-footer
+    = link_to 'Make a transaction', new_customer_transaction_path(@customer)
+    |
+    = link_to 'Transactions history', customer_transactions_path(@customer)
+    = link_to 'Account settings', edit_customer_account_path(@customer), { class: 'pull-right' }
+
+.panel.panel-primary
+  .panel-heading Allowance
+
+  - if @customer.allowance.nil?
+    .panel-body No allowance set.
+    .panel-footer= link_to 'Setup allowance', new_customer_allowance_path(@customer)
+  - else
+    .panel-body= "#{@customer.allowance.amount @customer.account.currency}, on every #{Date::DAYNAMES[@customer.allowance.wday]}"
+    .panel-footer
+      = link_to 'Modify allowance', edit_customer_allowance_path(@customer, @allowance)
+      | 
+      = link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }
+%div= link_to 'Back', customers_path

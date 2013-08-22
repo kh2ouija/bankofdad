@@ -1,0 +1,28 @@
+%h1 New transaction
+
+= form_for([@customer, @transaction]) do |f|
+  - if @transaction.errors.any?
+    .alert.alert-danger
+      %h2= pluralize(@transaction.errors.count, "error") + ' prohibited this transaction from being saved:'
+
+      %ul
+      - @transaction.errors.full_messages.each do |msg|
+        %li= msg
+
+  .form-group
+    = f.label :operation
+    %br
+    = f.select :operation, %w{ deposit withdraw }, {}, { class: 'form-control' }
+  .form-group
+    = f.label :amount
+    %br
+    .input-group
+      = f.text_field :amount, class: 'form-control'
+      %span.input-group-addon= @customer.account.currency
+  .form-group
+    = f.label :description
+    %br
+    = f.text_field :description, class: 'form-control'
+  %div
+    = f.submit 'Confirm', class: 'btn btn-primary'
+    = link_to 'Back', customer_path(@customer), class: 'btn btn-default'
