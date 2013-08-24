@@ -1,30 +1,48 @@
-.panel.panel-primary
-  .panel-heading
-    Account    
-  %ul.list-group
-    %li.list-group-item= "Balance: #{@customer.account.balance} #{@customer.account.currency}"
-    %li.list-group-item
-      - if @customer.account.interest == 0
-        No interest.
-      -else
-        = "Interest: #{@customer.account.interest}%, on every Saturday"
+.row
+  .col-md-6
+    %h1
+      %small Balance:
+      %span.text-success= "#{@customer.account.balance} #{@customer.account.currency}"
+    - if @customer.account.interest == 0
+      %p
+        This account is paying no interest.
+        = link_to '[ Settings ]', edit_customer_account_path(@customer)
+      %p
+        = link_to 'Deposit', new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm'
+        = link_to 'Withdraw', new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-warning btn-sm'
+    -else
+      = "Interest: #{@customer.account.interest}%, on every Saturday"
+  .col-md-6
+    %strong Recent transactions  
+    - if @customer.transactions.empty?
+      %p No transactions found.
+    - else
+      %table.table.table-condensed
+        %thead
+          %tr
+            %th Date
+            %th Amount        
+            %th Description
+        %tbody
+          - @customer.transactions.reverse.first(3).each do |transaction|
+            %tr
+              %td= transaction.created_at.to_s(:short)
+              %td{ class: transaction.operation == 'deposit' ? 'text-success' : 'text-danger' }= "#{transaction.operation == 'deposit' ? '+' : '-'}#{transaction.amount} #{@customer.account.currency}"
+              %td= transaction.description
+      = link_to 'Show all', customer_transactions_path(@customer), class: 'pull-right'
 
-  .panel-footer
-    = link_to 'Make a transaction', new_customer_transaction_path(@customer)
-    |
-    = link_to 'Transactions history', customer_transactions_path(@customer)
-    = link_to 'Account settings', edit_customer_account_path(@customer), { class: 'pull-right' }
+%hr
 
-.panel.panel-primary
-  .panel-heading Allowance
-
-  - if @customer.allowance.nil?
-    .panel-body No allowance set.
-    .panel-footer= link_to 'Setup allowance', new_customer_allowance_path(@customer)
-  - else
-    .panel-body= "#{@customer.allowance.amount} #{@customer.account.currency}, on every #{Date::DAYNAMES[@customer.allowance.wday]}"
-    .panel-footer
-      = link_to 'Modify allowance', edit_customer_allowance_path(@customer, @allowance)
-      | 
-      = link_to 'Cancel', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }
-%div= link_to 'Back', customers_path
+- if @customer.allowance.nil?
+  %h1
+    %small Allowance:
+    %span.text-danger None.
+    %br
+  = link_to 'Setup allowance', new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm'
+- else
+  %h1
+    %small Allowance:
+    %span.text-success= "#{@customer.allowance.amount} #{@customer.account.currency}"
+    %small= "on every #{Date::DAYNAMES[@customer.allowance.wday]}"
+  = link_to 'Modify allowance', edit_customer_allowance_path(@customer, @allowance), class: 'btn btn-primary btn-sm'
+  = link_to 'Cancel allowance', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'

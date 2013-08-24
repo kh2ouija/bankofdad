@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1
   def show
-    @page_title = "Customer #{@customer.name}"
+    @page_title = "#{@customer.name}'s account"
   end
 
   # GET /customers/new
