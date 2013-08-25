@@ -1,21 +1,18 @@
-.panel.panel-primary
-  .panel-heading Your customers
-  .panel-body
-    - if @customers.empty?
-      You have no customers.
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Name
-            %th Net worth
-            %th{colspan: '2'} Actions
-        %tbody
-          - @customers.each do |customer|
-            %tr
-              %td= customer.name
-              %td= "#{customer.account.balance} #{customer.account.currency}"
-              %td= link_to 'Show', customer, { class: 'btn btn-default btn-sm' }
-              %td= link_to 'Delete', customer, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
-  .panel-footer
-    = link_to 'Create new customer', new_customer_path
+%h1 Your customers
+- if @customers.empty?
+  You have no customers.
+- else
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Net worth
+        %th{colspan: '2'} Actions
+    %tbody
+      - @customers.each do |customer|
+        %tr
+          %td= customer.name
+          %td= "#{customer.account.balance} #{customer.account.currency}"
+          %td= link_to 'Details', customer, { class: 'btn btn-default btn-sm' }
+          %td= link_to 'Delete', customer, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
+= link_to 'Create new customer', new_customer_path, class: 'btn btn-primary'

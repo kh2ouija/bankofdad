@@ -27,6 +27,7 @@ class AllowancesController < ApplicationController
 
   # PATCH/PUT /allowances/1
   def update
+    @allowance = @customer.allowance
     if @customer.allowance.update(allowance_params)
       redirect_to @customer, notice: 'Allowance was successfully updated.'
     else

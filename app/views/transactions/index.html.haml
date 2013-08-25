@@ -11,11 +11,14 @@
         %th Description
     %tbody
       - @customer.transactions.reverse.each do |transaction|
+        - tclass = transaction.operation == 'deposit' ? 'text-success' : 'text-danger'
         %tr
           %td= transaction.created_at.to_s(:long)
-          %td= transaction.operation
-          %td= "#{transaction.amount} #{@customer.account.currency}"
-          %td= "#{transaction.rbalance} #{@customer.account.currency}"
+          %td{class: tclass}= transaction.operation
+          %td{class: tclass}
+            %strong= "#{transaction.amount} #{@customer.account.currency}"
+          %td
+            %strong= "#{transaction.rbalance} #{@customer.account.currency}"
           %td= transaction.description
 
 %br
