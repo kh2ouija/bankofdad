@@ -17,3 +17,5 @@
   %div
     = f.submit 'Confirm', class: 'btn btn-primary'
     = link_to 'Back', @customer, class: 'btn btn-default'
+    - if delete_button
+      = link_to 'Delete allowance', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right'

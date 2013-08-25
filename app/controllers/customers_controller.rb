@@ -10,6 +10,10 @@ class CustomersController < ApplicationController
   # GET /customers/1
   def show
     @page_title = "#{@customer.name}'s account"
+    @recent_transactions = Transaction.where(customer: @customer).order('created_at DESC').limit(3) 
+    if @customer.account.interest > 0
+      @next_interest_date = Date.today + (6 - Date.today.wday)  
+    end
   end
 
   # GET /customers/new
