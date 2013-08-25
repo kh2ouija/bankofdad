@@ -4,10 +4,21 @@
   .col-md-6
     .panel.panel-default
       .panel-body
+<<<<<<< HEAD
         %h1
           %small Balance:
           %span.text-success= @customer.account.balance
           %small= @customer.account.currency
+=======
+        %h2
+          Balance:
+          %span.text-success
+            %strong= @customer.account.balance
+          = @customer.account.currency
+        %p
+          = link_to 'Deposit', new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm'
+          = link_to 'Withdraw', new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-warning btn-sm'
+>>>>>>> e77216ca7e81e82319d2fd56389031745112c80a
         %p
           %strong Interest:
           - if @customer.account.interest == 0
@@ -18,10 +29,14 @@
               %strong= "#{@customer.account.interest}%"
             on every
             %strong Saturday
+<<<<<<< HEAD
         %p
           = link_to 'Deposit', new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm'
           = link_to 'Withdraw', new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-warning btn-sm'
           = link_to 'Account settings', edit_customer_account_path(@customer), class: 'btn btn-primary btn-sm'
+=======
+        = link_to 'Account settings', edit_customer_account_path(@customer), class: 'btn btn-primary btn-sm'
+>>>>>>> e77216ca7e81e82319d2fd56389031745112c80a
     .panel.panel-default
       .panel-body
         - if @customer.allowance.nil?
