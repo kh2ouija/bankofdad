@@ -49,5 +49,3 @@ end
 gem 'haml'
 gem 'thin'
 gem 'quiet_assets', group: :development
-gem 'rails_12factor', group: :production
-gem 'pg', group: :production
