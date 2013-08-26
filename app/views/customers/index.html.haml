@@ -1,4 +1,5 @@
-%h1 Your customers
+= render 'breadcrumbs', breadcrumbs: {'Your customers' => nil}
+%h2 Your customers
 - if @customers.empty?
   %p You have no customers.
 - else

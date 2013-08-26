@@ -1,3 +1,5 @@
+= render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @customer.name => @customer, 'Transactions history' => nil}
+    
 - if @transactions.empty?
   %p No transactions found.
 - else

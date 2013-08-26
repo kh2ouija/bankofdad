@@ -1,3 +1,5 @@
+= render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @customer.name => @customer, 'New transaction' => nil}
+
 .col-md-6
   = form_for([@customer, @transaction]) do |f|
     - if @transaction.errors.any?

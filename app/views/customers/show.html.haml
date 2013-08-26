@@ -1,5 +1,5 @@
-%h1= @customer.name
-%hr
+= render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @customer.name => nil}
+
 .row
   .col-md-6
     .panel.panel-default
@@ -18,7 +18,7 @@
               %strong= "#{@customer.account.interest}%"
             on every
             %strong Saturday
-        %p
+        %ph3
           = link_to 'Deposit', new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm'
           = link_to 'Withdraw', new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-warning btn-sm'
           = link_to 'Account settings', edit_customer_account_path(@customer), class: 'btn btn-primary btn-sm'

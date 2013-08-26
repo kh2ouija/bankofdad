@@ -1,8 +1,13 @@
 Mrbank::Application.routes.draw do
 
   devise_for :users
-  root 'dashboard#show'
-    
+
+  authenticated do
+    root 'customers#index', as: :authenticated_root
+  end
+
+  root 'guest#landing'
+  
   resources :customers do
     resources :transactions
     resource :allowance
