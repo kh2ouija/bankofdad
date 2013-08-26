@@ -60,3 +60,6 @@ gem 'coveralls', require: false
 
 # authentication
 gem 'devise', '~> 3.0.3'
+
+# monitoring
+gem 'newrelic_rpm'
