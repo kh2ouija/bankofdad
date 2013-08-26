@@ -8,7 +8,7 @@ class CustomersControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:customers)
+    assert_no_tnil assigns(:customers)
   end
 
   test "should get new" do
@@ -18,7 +18,7 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: { balance: @customer.balance, name: @customer.name }
+      post :create, customer: { name: @customer.name }
     end
 
     assert_redirected_to customer_path(assigns(:customer))
@@ -35,7 +35,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: { balance: @customer.balance, name: @customer.name }
+    patch :update, id: @customer, customer: { name: @customer.name }
     assert_redirected_to customer_path(assigns(:customer))
   end
 

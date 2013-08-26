@@ -49,3 +49,4 @@ end
 gem 'haml'
 gem 'thin'
 gem 'quiet_assets', group: :development
+gem 'coveralls', require: false
