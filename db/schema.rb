@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20130826120059) do
 
   create_table "customers", force: true do |t|
     t.string   "name",       null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AllowancesControllerTest < ActionController::TestCase
   setup do
+    sign_in :user, users(:one)
     @allowance = allowances(:one)
   end
 

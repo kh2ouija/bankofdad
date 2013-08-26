@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_action :set_customer, only: [:index, :new, :create, :show]
 
   # GET /transactions
@@ -30,7 +31,7 @@ class TransactionsController < ApplicationController
   
   private
     def set_customer
-      @customer = Customer.find(params[:customer_id])
+      @customer = current_user.customers.find(params[:customer_id])
     end
 
     def transaction_params

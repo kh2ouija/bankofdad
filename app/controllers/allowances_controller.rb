@@ -1,5 +1,6 @@
 class AllowancesController < ApplicationController
   
+  before_filter :authenticate_user!
   before_action :set_customer, only: [:new, :create, :edit, :update, :destroy]
   
   # GET /allowances/new
@@ -42,12 +43,8 @@ class AllowancesController < ApplicationController
   end
 
   private
-    def set_allowance
-      @allowance = Allowance.find(params[:id])
-    end
-
     def set_customer
-      @customer = Customer.find(params[:customer_id])
+      @customer = current_user.customers.find(params[:customer_id])
     end
 
     def allowance_params

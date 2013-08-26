@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_action :set_account
 
   # GET /customers/1/account/edit
@@ -18,7 +19,7 @@ class AccountsController < ApplicationController
 
   protected
   def set_account
-    @account = Customer.find(params[:id]).account
+    @account = current_user.customers.find(params[:id]).account
   end
 
   def account_params

@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
 
+  belongs_to :user
   has_one :account, dependent: :destroy
   has_many :transactions
   has_one :allowance
