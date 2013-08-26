@@ -1,4 +1,4 @@
-- if @customer.transactions.empty?
+- if @transactions.empty?
   %p No transactions found.
 - else
   %table.table.table-striped
@@ -10,7 +10,7 @@
         %th Balance
         %th Description
     %tbody
-      - @customer.transactions.reverse.each do |transaction|
+      - @transactions.reverse.each do |transaction|
         - tclass = transaction.operation == 'deposit' ? 'text-success' : 'text-danger'
         %tr
           %td= transaction.created_at.to_s(:long)

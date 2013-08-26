@@ -6,33 +6,33 @@ class AllowancesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, customer_id: @allowance.customer_id
     assert_response :success
   end
 
   test "should create allowance" do
     assert_difference('Allowance.count') do
-      post :create, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
+      post :create, customer_id: @allowance.customer_id, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
     end
 
-    assert_redirected_to allowance_path(assigns(:allowance))
+    assert_redirected_to @allowance.customer
   end
 
   test "should get edit" do
-    get :edit, id: @allowance
+    get :edit, customer_id: @allowance.customer_id, id: @allowance
     assert_response :success
   end
 
   test "should update allowance" do
-    patch :update, id: @allowance, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
-    assert_redirected_to allowance_path(assigns(:allowance))
+    patch :update, customer_id: @allowance.customer_id, id: @allowance, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
+    assert_redirected_to @allowance.customer
   end
 
   test "should destroy allowance" do
     assert_difference('Allowance.count', -1) do
-      delete :destroy, id: @allowance
+      delete :destroy, customer_id: @allowance.customer_id, id: @allowance
     end
 
-    assert_redirected_to allowances_path
+    assert_redirected_to @allowance.customer
   end
 end

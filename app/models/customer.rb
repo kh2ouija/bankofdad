@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
 
-  has_one :account
+  has_one :account, dependent: :destroy
   has_many :transactions
   has_one :allowance
 

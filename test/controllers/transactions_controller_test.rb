@@ -6,22 +6,21 @@ class TransactionsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :index, customer_id: @transaction.customer.id
     assert_response :success
     assert_not_nil assigns(:transactions)
   end
 
   test "should get new" do
-    get :new
+    get :new, customer_id: @transaction.customer.id
     assert_response :success
   end
 
   test "should create transaction" do
     assert_difference('Transaction.count') do
-      post :create, transaction: { amount: @transaction.amount, customer_id: @transaction.customer_id, description: @transaction.description, operation: @transaction.operation }
+      post :create, customer_id: @transaction.customer.id, transaction: { amount: @transaction.amount, customer_id: @transaction.customer_id, description: @transaction.description, operation: @transaction.operation, rbalance: 10.99 }
     end
-
-    assert_redirected_to transaction_path(assigns(:transaction))
+    assert_redirected_to @transaction.customer
   end
 
 end

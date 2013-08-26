@@ -1,11 +1,11 @@
 class TransactionsController < ApplicationController
 
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :set_customer, only: [:index, :new, :create, :show]
 
   # GET /transactions
   def index
     @page_title = 'Transactions history'
+    @transactions = @customer.transactions
   end
 
   # GET /transactions/new
@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     begin
       @customer.record(@transaction)
-      redirect_to customer_path(@customer, @transaction), notice: 'Transaction was successfully created.'
+      redirect_to customer_path(@customer), notice: 'Transaction was successfully created.'
     rescue Exception => e
       puts e
       @transaction.valid?
@@ -29,10 +29,6 @@ class TransactionsController < ApplicationController
   end
   
   private
-    def set_transaction
-      @transaction = Transaction.find(params[:id])
-    end
-
     def set_customer
       @customer = Customer.find(params[:customer_id])
     end

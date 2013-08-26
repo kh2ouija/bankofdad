@@ -8,7 +8,7 @@ class CustomersControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_no_tnil assigns(:customers)
+    assert_not_nil assigns(:customers)
   end
 
   test "should get new" do
@@ -25,18 +25,8 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should show customer" do
-    get :show, id: @customer
+    get :show, id: @customer.id
     assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @customer
-    assert_response :success
-  end
-
-  test "should update customer" do
-    patch :update, id: @customer, customer: { name: @customer.name }
-    assert_redirected_to customer_path(assigns(:customer))
   end
 
   test "should destroy customer" do
