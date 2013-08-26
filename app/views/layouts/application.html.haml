@@ -8,6 +8,7 @@
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css', media: 'screen'}
     = csrf_meta_tags
     = stylesheet_link_tag 'jumbotron-narrow', media: 'screen'
+    = stylesheet_link_tag 'signin', media: 'screen'
 
     /[if lt IE9]
       = javascript_include_tag 'html5shiv'
@@ -35,6 +36,11 @@
           %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
             &times;
           = notice
+      - if alert
+        .alert.alert-warning.alert-dismissable
+          %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+            &times;
+          = alert
       = yield
     %script{src: '//code.jquery.com/jquery.js'}
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
