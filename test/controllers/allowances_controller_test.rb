@@ -5,12 +5,6 @@ class AllowancesControllerTest < ActionController::TestCase
     @allowance = allowances(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:allowances)
-  end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -18,15 +12,10 @@ class AllowancesControllerTest < ActionController::TestCase
 
   test "should create allowance" do
     assert_difference('Allowance.count') do
-      post :create, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, interval: @allowance.interval }
+      post :create, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
     end
 
     assert_redirected_to allowance_path(assigns(:allowance))
-  end
-
-  test "should show allowance" do
-    get :show, id: @allowance
-    assert_response :success
   end
 
   test "should get edit" do
@@ -35,7 +24,7 @@ class AllowancesControllerTest < ActionController::TestCase
   end
 
   test "should update allowance" do
-    patch :update, id: @allowance, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, interval: @allowance.interval }
+    patch :update, id: @allowance, allowance: { amount: @allowance.amount, customer_id: @allowance.customer_id, wday: @allowance.wday }
     assert_redirected_to allowance_path(assigns(:allowance))
   end
 
