@@ -8,6 +8,9 @@
   %p
   = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password confirmation'
 
-  = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
-
-/= render 'devise/shared/links'
+  = f.submit 'Sign up', class: 'btn btn-lg btn-success btn-block'
+  %br
+    - if controller_name != 'sessions'
+      %p 
+        %h4 Already have an account?
+      = link_to "Sign in", new_session_path(resource_name), class: 'btn btn-primary btn-block'
