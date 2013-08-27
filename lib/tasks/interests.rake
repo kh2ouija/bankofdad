@@ -1,4 +1,4 @@
-namespace :mrbank do
+namespace :bod do
   desc 'Pay account interests'
   task :interests => :environment do
     puts 'Processing accounts interests...'
