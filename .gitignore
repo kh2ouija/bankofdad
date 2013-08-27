@@ -17,3 +17,5 @@
 
 # Ignore coverage folder
 /coverage
+
+/config/newrelic.yml
