@@ -63,3 +63,6 @@ gem 'devise', '~> 3.0.3'
 
 # monitoring
 gem 'newrelic_rpm'
+
+# scheduled tasks
+gem 'whenever', require: false

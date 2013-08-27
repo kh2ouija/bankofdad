@@ -16,8 +16,7 @@
           -else
             %span.text-success
               %strong= "#{@customer.account.interest}%"
-            on every
-            %strong Saturday
+            on the 1st of each month.
         %ph3
           = link_to 'Deposit', new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm'
           = link_to 'Withdraw', new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-warning btn-sm'
