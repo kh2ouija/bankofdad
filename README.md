@@ -1,6 +1,8 @@
-# Mr. Bank: Play personal banker for your children and teach them about saving.
+# Bank of Dad
 
-[![Build Status](https://travis-ci.org/kh2ouija/mrbank.png)](https://travis-ci.org/kh2ouija/mrbank)
-[![Dependency Status](https://gemnasium.com/kh2ouija/mrbank.png)](https://gemnasium.com/kh2ouija/mrbank)
-[![Code Climate](https://codeclimate.com/github/kh2ouija/mrbank.png)](https://codeclimate.com/github/kh2ouija/mrbank)
-[![Coverage Status](https://coveralls.io/repos/kh2ouija/mrbank/badge.png)](https://coveralls.io/r/kh2ouija/mrbank)
+## Play personal banker for your children and teach them about saving.
+
+[![Build Status](https://travis-ci.org/kh2ouija/bankofdad.png)](https://travis-ci.org/kh2ouija/bankofdad)
+[![Dependency Status](https://gemnasium.com/kh2ouija/bankofdad.png)](https://gemnasium.com/kh2ouija/bankofdad)
+[![Code Climate](https://codeclimate.com/github/kh2ouija/bankofdad.png)](https://codeclimate.com/github/kh2ouija/bankofdad)
+[![Coverage Status](https://coveralls.io/repos/kh2ouija/bankofdad/badge.png)](https://coveralls.io/r/kh2ouija/bankofdad)

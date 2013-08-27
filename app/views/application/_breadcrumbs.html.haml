@@ -1,6 +1,6 @@
 - if breadcrumbs
 	%ol.breadcrumb
-		%li Mr. Bank
+		%li Bank of Dad
 		- breadcrumbs.keys[0...-1].each do |b|
 			%li= link_to b, breadcrumbs[b]
 		%li.active= breadcrumbs.keys.last
