@@ -3,16 +3,15 @@
   %head
     %title= @page_title || 'Bank of Dad'
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
+    = csrf_meta_tags
+
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', media: 'screen'}
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css', media: 'screen'}
-    = csrf_meta_tags
-    = stylesheet_link_tag 'jumbotron-narrow', media: 'screen'
-    = stylesheet_link_tag 'signin', media: 'screen'
 
-    /[if lt IE9]
-      = javascript_include_tag 'html5shiv'
-      = javascript_include_tag 'respond.min'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
+    
+    = yield(:header) if content_for? :header
+
   %body
     .navbar.navbar-default.navbar-static-top
       .container
