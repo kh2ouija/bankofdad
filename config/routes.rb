@@ -1,4 +1,4 @@
-Mrbank::Application.routes.draw do
+Bankofdad::Application.routes.draw do
 
   devise_for :users
 

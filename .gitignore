@@ -18,4 +18,7 @@
 # Ignore coverage folder
 /coverage
 
+# Ignore compiled assets
+/public/assets
+
 /config/newrelic.yml
