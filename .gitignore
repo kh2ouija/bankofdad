@@ -22,3 +22,4 @@
 /public/assets
 
 /config/newrelic.yml
+/config/secret_token.rb
