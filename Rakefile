@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Mrbank::Application.load_tasks
+Bankofdad::Application.load_tasks
