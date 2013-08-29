@@ -66,3 +66,6 @@ gem 'newrelic_rpm'
 
 # scheduled tasks
 gem 'whenever', require: false
+
+# mysql
+gem 'mysql2'
