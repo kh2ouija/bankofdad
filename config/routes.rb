@@ -8,9 +8,9 @@ Bankofdad::Application.routes.draw do
 
   root 'guest#landing'
   
-  resources :customers do
-    resources :transactions
-    resource :allowance
+  resources :customers, only: [:index, :show, :new, :create, :destroy] do
+    resources :transactions, only: [:index, :new, :create]
+    resource :allowance, only: [:new, :create, :edit, :update, :destroy]
   end
 
   get 'customers/:id/account/edit' => 'accounts#edit', as: :edit_customer_account

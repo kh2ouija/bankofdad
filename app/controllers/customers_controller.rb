@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
 
   private
     def set_customer
-      @customer = current_user.customers.find(params[:id])
+      @customer = current_user.customers.find_by_name!(params[:id])
     end
 
     def customer_params

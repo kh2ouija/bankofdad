@@ -44,7 +44,7 @@ class AllowancesController < ApplicationController
 
   private
     def set_customer
-      @customer = current_user.customers.find(params[:customer_id])
+      @customer = current_user.customers.find_by_name!(params[:customer_id])
     end
 
     def allowance_params

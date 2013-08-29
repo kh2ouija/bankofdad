@@ -1,8 +1,8 @@
 class CreateCustomers < ActiveRecord::Migration
   def change
     create_table :customers do |t|
-      t.string :name, null: false
-       t.integer :user_id, null: false, options: 
+      t.string :name, null: false, unique: true
+      t.integer :user_id, null: false, options: 
         "CONSTRAINT fk_customer_user REFERENCES users(id)"
       
       t.timestamps

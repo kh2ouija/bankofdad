@@ -5,7 +5,15 @@ class Customer < ActiveRecord::Base
   has_many :transactions
   has_one :allowance
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
+
+  before_validation(on: :create) do
+    self.name = name.capitalize if name?
+  end
+
+  def to_param
+    name
+  end
 
   def record(transaction)
   	Customer.transaction do

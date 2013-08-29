@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
 
   protected
   def set_account
-    @account = current_user.customers.find(params[:id]).account
+    @account = current_user.customers.find_by_name!(params[:id]).account
   end
 
   def account_params
