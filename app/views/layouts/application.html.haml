@@ -10,7 +10,7 @@
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
 
-    = yield(:header) if content_for? :header
+    = yield(:header)
 
   %body
     .navbar.navbar-default.navbar-static-top

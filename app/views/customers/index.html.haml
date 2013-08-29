@@ -12,9 +12,7 @@
     %tbody
       - @customers.each do |customer|
         %tr
-          %td
-            %span.glyphicon.glyphicon-user
-            = customer.name
+          %td= customer.name
           %td= "#{customer.account.balance} #{customer.account.currency}"
           %td= link_to 'Details', customer, { class: 'btn btn-default btn-sm' }
           %td= link_to 'Delete', customer, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
