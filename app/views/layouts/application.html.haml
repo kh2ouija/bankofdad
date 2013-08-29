@@ -9,7 +9,7 @@
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css', media: 'screen'}
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
-    
+
     = yield(:header) if content_for? :header
 
   %body
@@ -55,5 +55,15 @@
       = yield
     %script{src: '//code.jquery.com/jquery.js'}
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
+    %script{src: '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js'}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    
+
+    :javascript
+      $(document).ready(function() {
+        var timeZone = jstz.determine();
+        document.cookie = 'jstz_time_zone=' + timeZone.name();
+      });
+    
     
