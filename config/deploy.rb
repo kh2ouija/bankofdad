@@ -15,6 +15,8 @@ role :db,  "bankofdad.eu", :primary => true
 set :use_sudo, false
 default_run_options[:pty] = true
 
+namespace :derp do
+end
 
 namespace :deploy do
 
@@ -27,7 +29,7 @@ namespace :deploy do
 
   desc "Restart unicorn"
   task :restart_unicorn do
-    sudo "service unicorn restart"
+    run "#{sudo} service unicorn restart"
   end
 
   before "deploy:assets:precompile", "deploy:copy_configs"
