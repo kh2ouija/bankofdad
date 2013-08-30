@@ -68,4 +68,7 @@ gem 'newrelic_rpm'
 gem 'whenever', require: false
 
 # mysql
-gem 'mysql2'
+gem 'mysql2', group: :production
+
+# unit test coverage
+gem 'simplecov', require: false, group: :test
