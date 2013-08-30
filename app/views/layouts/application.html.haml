@@ -13,46 +13,52 @@
     = yield(:header)
 
   %body
-    .navbar.navbar-default.navbar-static-top
-      .container
-        .navbar-header
-          %button.navbar-toggle{type: 'button', 'data-toggle' => 'collapse', 'data-target' => '.navbar-collapse'}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: '/'}
-            %strong bankofdad.eu
-        .navbar-collapse.collapse
-          %ul.nav.navbar-nav
-            %li.active
-              = link_to 'Home', customers_path
-            %li
-              %a{href: '#'} About
-          %ul.nav.navbar-nav.navbar-right
-            - if user_signed_in?
+    #wrap
+      .navbar.navbar-default.navbar-static-top
+        .container
+          .navbar-header
+            %button.navbar-toggle{type: 'button', 'data-toggle' => 'collapse', 'data-target' => '.navbar-collapse'}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{href: '/'}
+              %strong bankofdad.eu
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
               %li.active
-                %a
-                  %strong= current_user.email
+                = link_to 'Home', customers_path
               %li
-                = link_to 'Logout', destroy_user_session_path, method: :delete
-            - else
-              %li
-                = link_to 'Sign in', new_user_session_path
-              %li
-                = link_to 'Register', new_user_registration_path
+                %a{href: '#'} About
+            %ul.nav.navbar-nav.navbar-right
+              - if user_signed_in?
+                %li.active
+                  %a
+                    %strong= current_user.email
+                %li
+                  = link_to 'Logout', destroy_user_session_path, method: :delete
+              - else
+                %li
+                  = link_to 'Sign in', new_user_session_path
+                %li
+                  = link_to 'Register', new_user_registration_path
 
-    .container
-      - if notice
-        .alert.alert-success.alert-dismissable
-          %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
-            &times;
-          = notice
-      - if alert
-        .alert.alert-warning.alert-dismissable
-          %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
-            &times;
-          = alert
-      = yield
+      .container
+        - if notice
+          .alert.alert-success.alert-dismissable
+            %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+              &times;
+            = notice
+        - if alert
+          .alert.alert-warning.alert-dismissable
+            %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+              &times;
+            = alert
+        = yield
+    #footer
+      .container
+        .p.text-muted.credit
+          &copy; 2013 
+          %a kh2ouija@yahoo.com
     %script{src: '//code.jquery.com/jquery.js'}
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
     %script{src: '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js'}
