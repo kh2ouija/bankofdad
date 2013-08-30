@@ -20,7 +20,3 @@
 
 # Ignore compiled assets
 /public/assets
-
-# Configuration files with sensitive data
-/config/newrelic.yml
-/config/database.yml
