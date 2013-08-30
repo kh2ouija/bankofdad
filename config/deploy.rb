@@ -13,12 +13,23 @@ role :app, "bankofdad.eu"
 role :db,  "bankofdad.eu", :primary => true
 
 set :use_sudo, false
+default_run_options[:pty] = true
+
 
 namespace :deploy do
+
+  desc "Inject configuration files with sensitive data"
   task :copy_configs do
     run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "cp #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
     run "cp #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
+
+  desc "Restart unicorn"
+  task :restart_unicorn do
+    sudo "service unicorn restart"
+  end
+
   before "deploy:assets:precompile", "deploy:copy_configs"
+  after "deploy", "deploy:restart_unicorn"
 end
