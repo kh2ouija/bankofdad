@@ -10,7 +10,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/1
   def show
-    @recent_transactions = Transaction.where(customer: @customer).order('created_at DESC').limit(3) 
+    @recent_transactions = Transaction.where(customer: @customer).order('created_at DESC').limit(3)
+    @last_transaction = @recent_transactions.first 
     if @customer.account.interest > 0
       @next_interest_date = Date.today + (6 - Date.today.wday)  
     end
@@ -52,7 +53,7 @@ class CustomersController < ApplicationController
   # DELETE /customers/1
   def destroy
     @customer.destroy
-      redirect_to customers_url
+    redirect_to customers_url
   end
 
   private

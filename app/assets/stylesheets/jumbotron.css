@@ -7,3 +7,9 @@
   font-size: 21px;
   padding: 14px 24px;
 }
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}

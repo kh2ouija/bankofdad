@@ -1,6 +1,7 @@
 - if breadcrumbs
-	%ol.breadcrumb
-		%li Bank of Dad
-		- breadcrumbs.keys[0...-1].each do |b|
-			%li= link_to b, breadcrumbs[b]
-		%li.active= breadcrumbs.keys.last
+  %ol.breadcrumb
+    %li
+      %span.glyphicon.glyphicon-home
+    - breadcrumbs.keys[0...-1].each do |b|
+      %li= link_to b, breadcrumbs[b]
+    %li.active= breadcrumbs.keys.last

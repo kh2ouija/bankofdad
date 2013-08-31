@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
 
   before_filter :authenticate_user!
-  before_action :set_customer, only: [:index, :new, :create, :show]
+  before_action :set_customer, only: [:index, :new, :create, :show, :destroy]
 
   # GET /transactions
   def index
@@ -26,6 +26,17 @@ class TransactionsController < ApplicationController
       @transaction.valid?
       @transaction.errors.add(:amount, 'exceeds available funds') if e.kind_of? Account::InsufficientFunds
       render action: 'new'
+    end
+  end
+
+  # DELETE /transactions/1
+  def destroy
+    @transaction = @customer.transactions.find(params[:id])
+    begin
+      @customer.undo(@transaction)
+      redirect_to @customer
+    rescue Exception => e
+      puts e
     end
   end
   

@@ -29,6 +29,18 @@ class Customer < ActiveRecord::Base
   	end
   end
 
+  def undo(transaction)
+    Customer.transaction do
+      if transaction.operation == 'deposit'
+        account.withdraw(transaction.amount)
+      elsif transaction.operation == 'withdraw'
+        account.deposit(transaction.amount)
+      end
+      account.save!
+      transaction.destroy!
+    end
+  end
+
   def net_worth
     account.balance
   end

@@ -8,8 +8,8 @@ Bankofdad::Application.routes.draw do
 
   root 'guest#landing'
   
-  resources :customers, only: [:index, :show, :new, :create, :destroy] do
-    resources :transactions, only: [:index, :new, :create]
+  resources :customers, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
+    resources :transactions, only: [:index, :new, :create, :destroy]
     resource :allowance, only: [:new, :create, :edit, :update, :destroy]
   end
 
