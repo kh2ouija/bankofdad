@@ -33,5 +33,5 @@ namespace :deploy do
   end
 
   before "deploy:assets:precompile", "deploy:copy_configs"
-  after "deploy", "deploy:restart_unicorn"
+  after "deploy:create_symlink", "deploy:restart_unicorn"
 end

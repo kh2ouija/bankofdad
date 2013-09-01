@@ -7,7 +7,7 @@
   .col-md-6
     %h2
       Balance:
-      %strong{class: @customer.account.balance == 0 ? 'text-danger' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
+      %strong{class: @customer.account.balance == 0 ? '' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
       %br
       - if @customer.account.interest == 0
         %small No interest
@@ -31,8 +31,8 @@
       - if @customer.allowance.nil?
         %h3
           Allowance:
-          %span.text-danger
-            %strong None
+          %span
+            %strong no
         = link_to new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm' do
           %span.glyphicon.glyphicon-cog
           = ' Setup allowance'
