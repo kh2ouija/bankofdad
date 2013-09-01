@@ -4,6 +4,7 @@ class Customer < ActiveRecord::Base
   has_one :account, dependent: :destroy
   has_many :transactions
   has_one :allowance
+  has_many :deposits
 
   validates :name, presence: true, uniqueness: true
 
@@ -18,11 +19,7 @@ class Customer < ActiveRecord::Base
   def record(transaction)
   	Customer.transaction do
       transaction.customer = self
-      if transaction.operation == 'deposit'
-        account.deposit(transaction.amount)
-      elsif transaction.operation == 'withdraw'
-        account.withdraw(transaction.amount)
-      end
+      account.apply(transaction)
       transaction.rbalance = account.balance
       account.save!
       transaction.save!
@@ -31,11 +28,7 @@ class Customer < ActiveRecord::Base
 
   def undo(transaction)
     Customer.transaction do
-      if transaction.operation == 'deposit'
-        account.withdraw(transaction.amount)
-      elsif transaction.operation == 'withdraw'
-        account.deposit(transaction.amount)
-      end
+      account.undo(transaction)
       account.save!
       transaction.destroy!
     end

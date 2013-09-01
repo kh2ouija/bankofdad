@@ -1,0 +1,33 @@
+.panel.panel-default.panel-success
+  .panel-heading
+    %h2.panel-title= "#{@customer.name}'s deposits"    
+  - if @customer.deposits.empty?
+    .panel-body= "#{@customer.name} has no term deposits."
+  - else
+    .panel-body
+      %table.table
+        %thead
+          %tr
+            %th Deposit
+            %th Interest
+            %th Balance
+            %th Term
+            %th
+        %tbody
+          - @customer.deposits.each do |deposit|
+            %tr
+              %td
+                %span.glyphicon.glyphicon-time
+                Term deposit 
+                = deposit.duration_months == 12 ? '(1 year)' : "(#{pluralize(deposit.duration_months, 'month')})"
+              %td= "#{deposit.interest}%"
+              %td= "#{deposit.balance} #{deposit.customer.account.currency}"
+              %td= deposit.term.to_s(:short_date)
+              %td
+                = link_to customer_deposit_path(@customer, deposit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                  %span.glyphicon.glyphicon-trash
+                  = ' Cancel'
+  .panel-footer
+    = link_to new_customer_deposit_path(@customer), class: 'btn btn-primary btn-sm' do
+      %span.glyphicon.glyphicon-time
+      = ' Create term deposit'

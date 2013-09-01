@@ -20,4 +20,4 @@
       = ' Confirm'
     = link_to 'Back', @customer, class: 'btn btn-default'
     - if delete_button
-      = link_to 'Delete allowance', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right'
+      = link_to 'Delete', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right'

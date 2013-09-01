@@ -12,7 +12,7 @@
         %th Balance
         %th Description
     %tbody
-      - @transactions.reverse.each do |transaction|
+      - @transactions.each do |transaction|
         - tclass = transaction.operation == 'deposit' ? 'text-success' : 'text-danger'
         %tr
           %td= transaction.created_at.to_s(:long)
@@ -22,6 +22,11 @@
           %td
             %strong= "#{transaction.rbalance} #{@customer.account.currency}"
           %td= transaction.description
+          %td
+            - if transaction == @transactions.first
+              = link_to customer_transaction_path(@customer, @last_transaction), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' } do
+                %span.glyphicon.glyphicon-trash
+                = ' Undo'
 
 %br
 

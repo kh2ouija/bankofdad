@@ -11,6 +11,7 @@ Bankofdad::Application.routes.draw do
   resources :customers, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :transactions, only: [:index, :new, :create, :destroy]
     resource :allowance, only: [:new, :create, :edit, :update, :destroy]
+    resources :deposits
   end
 
   get 'customers/:id/account/edit' => 'accounts#edit', as: :edit_customer_account

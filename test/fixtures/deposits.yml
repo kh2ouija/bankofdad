@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 
+  duration_months: 
+  interest: 
+  balance: 9.99
+
+two:
+  customer_id: 
+  duration_months: 
+  interest: 
+  balance: 9.99

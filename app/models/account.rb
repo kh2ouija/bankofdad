@@ -17,6 +17,22 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def apply(transaction)
+    if transaction.operation == 'deposit'
+      self.deposit(transaction.amount)
+    elsif transaction.operation == 'withdraw'
+      self.withdraw(transaction.amount)
+    end
+  end
+
+  def undo(transaction)
+    if transaction.operation == 'deposit'
+      self.withdraw(transaction.amount)
+    elsif transaction.operation == 'withdraw'
+      self.deposit(transaction.amount)
+    end
+  end
+
   def deposit(amount)
     self.balance += amount
   end

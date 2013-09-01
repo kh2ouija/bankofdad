@@ -35,10 +35,14 @@
                   %a
                     %strong= current_user.email
                 %li
-                  = link_to 'Logout', destroy_user_session_path, method: :delete
+                  = link_to destroy_user_session_path, method: :delete do
+                    %span.glyphicon.glyphicon-log-out
+                    = ' Sign out'
               - else
                 %li
-                  = link_to 'Sign in', new_user_session_path
+                  = link_to new_user_session_path do
+                    %span.glyphicon.glyphicon-log-in
+                    = ' Sign in'
                 %li
                   = link_to 'Register', new_user_registration_path
 

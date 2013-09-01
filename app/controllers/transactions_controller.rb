@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   def index
     @page_title = 'Transactions history'
-    @transactions = @customer.transactions
+    @transactions = @customer.transactions.order('created_at DESC')
   end
 
   # GET /transactions/new

@@ -1,80 +1,11 @@
 = render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @customer.name => nil}
 
-/
-  %h2= "#{@customer.name}\'s account"
-  %hr
 .row
   .col-md-6
-    %h2
-      Balance:
-      %strong{class: @customer.account.balance == 0 ? '' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
-      %br
-      - if @customer.account.interest == 0
-        %small No interest
-      -else
-        %small= '+ '
-        %small.text-info
-          %strong= "#{@customer.account.interest}%"
-        %small monthly interest
-    %p
-      = link_to new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm' do
-        %span.glyphicon.glyphicon-plus
-        = ' Deposit'
-      = link_to new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-danger btn-sm' do
-        %span.glyphicon.glyphicon-minus
-        = ' Withdraw'
-      = link_to edit_customer_account_path(@customer), class: 'btn btn-primary btn-sm pull-right' do
-        %span.glyphicon.glyphicon-cog
-        = ' Account settings'
-    %hr
-    %p
-      - if @customer.allowance.nil?
-        %h3
-          Allowance:
-          %span
-            %strong no
-        = link_to new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm' do
-          %span.glyphicon.glyphicon-cog
-          = ' Setup allowance'
-      - else
-        %h3
-          Allowance:
-          %span.text-info
-            %strong= "#{@customer.allowance.amount} #{@customer.account.currency}"
-          %br
-            %small on every
-            %small.text-info
-              %strong= Date::DAYNAMES[@customer.allowance.wday]
-        = link_to edit_customer_allowance_path(@customer, @allowance), class: 'btn btn-primary btn-sm' do
-          %span.glyphicon.glyphicon-cog
-          = ' Change'
-        = link_to customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do
-          %span.glyphicon.glyphicon-remove
-          = ' Cancel'
-  .col-md-6.well
-    %p.lead Recent transactions  
-    - if @recent_transactions.empty?
-      %p No transactions found.
-    - else
-      %table.table.table-condensed
-        %thead
-          %tr
-            %th Date
-            %th Amount        
-            %th Description
-            %th
-        %tbody
-          - @recent_transactions.each do |transaction|
-            %tr
-              %td= transaction.created_at.to_s(:short_date)
-              %td{ class: transaction.operation == 'deposit' ? 'text-success' : 'text-danger' }= "#{transaction.operation == 'deposit' ? '+' : '-'}#{transaction.amount}"
-              %td= transaction.description
-              %td
-                - if transaction == @last_transaction
-                  = link_to customer_transaction_path(@customer, @last_transaction), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } do
-                    %span.glyphicon.glyphicon-trash
-      = link_to customer_transactions_path(@customer), class: 'btn btn-info pull-right' do
-        %span.glyphicon.glyphicon-list
-        = ' Transactions history'
-%hr
+    = render 'account'
+    = render 'allowance'
+  .col-md-6
+    = render 'recent_transactions'
+= render 'deposits'
+
 = link_to 'Back to customers', customers_path, class: 'btn btn-default'
