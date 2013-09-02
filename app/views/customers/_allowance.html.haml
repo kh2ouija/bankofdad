@@ -5,9 +5,6 @@
         Allowance:
         %span
           %strong no
-      = link_to new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm' do
-        %span.glyphicon.glyphicon-cog
-        = ' Setup allowance'
     - else
       %h4
         Allowance:
@@ -17,9 +14,14 @@
       %small.text-info
       %strong= Date::DAYNAMES[@customer.allowance.wday]
   .panel-footer
-    = link_to edit_customer_allowance_path(@customer, @allowance), class: 'btn btn-primary btn-sm' do
-      %span.glyphicon.glyphicon-cog
-      = ' Change'
-    = link_to customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do
-      %span.glyphicon.glyphicon-remove
-      = ' Cancel'
+    - if @customer.allowance.nil?
+      = link_to new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm' do
+        %span.glyphicon.glyphicon-cog
+        = ' Setup allowance'
+    - else
+      = link_to edit_customer_allowance_path(@customer, @allowance), class: 'btn btn-primary btn-sm' do
+        %span.glyphicon.glyphicon-cog
+        = ' Change'
+      = link_to customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do
+        %span.glyphicon.glyphicon-remove
+        = ' Cancel'

@@ -25,7 +25,7 @@
       %br
       = f.text_field :description, class: 'form-control', placeholder: params[:operation] == 'deposit' ? 'Eg: Present from Grandma' : 'Eg: Video game'
     %div
-      = content_tag :button, type: :submit, class: 'btn btn-primary' do
+      = content_tag :button, type: :submit, class: 'btn btn-primary btn' do
         %span.glyphicon.glyphicon-ok
         = ' Confirm'
       = link_to 'Back', customer_path(@customer), class: 'btn btn-default'

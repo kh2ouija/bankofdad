@@ -1,0 +1,39 @@
+= render 'breadcrumbs', breadcrumbs: {'Preferences' => nil}
+
+.col-md-6
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+    = devise_error_messages!
+
+    .form-group
+      = f.label :email
+      = f.email_field :email, :autofocus => true, class: 'form-control'
+
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      Currently waiting confirmation for:
+      = resource.unconfirmed_email
+
+    .form-group
+      = f.label :password
+      %br
+      %i (leave blank if you don't want to change it)
+      = f.password_field :password, :autocomplete => "off", class: 'form-control'
+
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, class: 'form-control'
+
+    .form-group
+      = f.label :current_password
+      %br
+      %i (to confirm your changes)
+      = f.password_field :current_password, class: 'form-control'
+
+    %div
+      = content_tag :button, type: :submit, class: 'btn btn-primary' do
+        %span.glyphicon.glyphicon-ok
+        = ' Confirm'
+      = link_to 'Back', customer_path(@customer), class: 'btn btn-default'
+
+  %hr
+  %h3 Unhappy? 
+  = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'btn btn-danger'

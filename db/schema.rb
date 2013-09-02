@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20130901094757) do
   end
 
   create_table "deposits", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "duration_months"
-    t.integer  "interest"
-    t.decimal  "balance"
+    t.integer  "customer_id",                             null: false
+    t.integer  "duration_months",                         null: false
+    t.integer  "interest",                                null: false
+    t.decimal  "balance",         precision: 8, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
