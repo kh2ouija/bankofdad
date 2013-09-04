@@ -1,5 +1,5 @@
-require "rvm/capistrano"
-
+require 'rvm/capistrano'
+require 'whenever/capistrano'
 set :application, "bankofdad.eu"
 set :scm, :git
 set :repository,  "git@github.com:kh2ouija/bankofdad.git"
@@ -28,7 +28,7 @@ namespace :deploy do
   end
 
   desc "Restart unicorn"
-  task :restart_unicorn do
+  task :restart do
     run "#{sudo} service unicorn restart"
   end
 

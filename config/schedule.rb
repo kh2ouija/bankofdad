@@ -20,9 +20,13 @@
 # Learn more: http://github.com/javan/whenever
 
 every '0 1 1 * *' do
-  rake 'bod:interests', environment: 'development'
+  rake 'bod:interests'
 end
 
 every :day, at: '2:00 am' do
-  rake 'bod:allowances', environment: 'development'
+  rake 'bod:allowances'
+end
+
+every :day, at: '3:00 am' do
+  rake 'bod:deposits'
 end

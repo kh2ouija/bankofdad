@@ -41,7 +41,7 @@ end
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -62,7 +62,7 @@ gem 'coveralls', require: false
 gem 'devise', '~> 3.0.3'
 
 # monitoring
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', group: :production
 
 # scheduled tasks
 gem 'whenever', require: false

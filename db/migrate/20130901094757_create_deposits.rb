@@ -5,7 +5,8 @@ class CreateDeposits < ActiveRecord::Migration
         "CONSTRAINT fk_deposit_customer REFERENCES customers(id)"
       t.integer :duration_months, null: false
       t.integer :interest, null: false 
-      t.decimal :balance, null: false, precision: 8, scale: 2
+      t.decimal :amount, null: false, precision: 8, scale: 2
+      t.date :term
 
       t.timestamps
     end

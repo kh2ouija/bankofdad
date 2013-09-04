@@ -9,8 +9,8 @@
         %thead
           %tr
             %th Deposit
+            %th Amount
             %th Interest
-            %th Balance
             %th Term
             %th
         %tbody
@@ -20,8 +20,8 @@
                 %span.glyphicon.glyphicon-time
                 Term deposit 
                 = deposit.duration_months == 12 ? '(1 year)' : "(#{pluralize(deposit.duration_months, 'month')})"
+              %td= "#{deposit.amount} #{deposit.customer.account.currency}"
               %td= "#{deposit.interest}%"
-              %td= "#{deposit.balance} #{deposit.customer.account.currency}"
               %td= deposit.term.to_s(:short_date)
               %td
                 = link_to customer_deposit_path(@customer, deposit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do

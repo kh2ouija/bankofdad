@@ -14,7 +14,7 @@ class DepositsController < ApplicationController
     begin
       transaction = Transaction.new do |t|
         t.operation = 'withdraw'
-        t.amount = @deposit.balance
+        t.amount = @deposit.amount
         t.description = 'Creating term deposit'
       end
       Deposit.transaction do
@@ -25,7 +25,7 @@ class DepositsController < ApplicationController
     rescue Exception => e
       puts e
       @deposit.valid?
-      @deposit.errors.add(:balance, 'exceeds available funds') if e.kind_of? Account::InsufficientFunds
+      @deposit.errors.add(:amount, 'exceeds available funds') if e.kind_of? Account::InsufficientFunds
       render action: 'new'
     end
   end
@@ -35,7 +35,7 @@ class DepositsController < ApplicationController
     begin
       transaction = Transaction.new do |t|
         t.operation = 'deposit'
-        t.amount = @deposit.balance
+        t.amount = @deposit.amount
         t.description = 'Early canceling term deposit'
       end
       Deposit.transaction do
@@ -60,6 +60,6 @@ class DepositsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deposit_params
-      params.require(:deposit).permit(:customer_id, :duration_months, :interest, :balance)
+      params.require(:deposit).permit(:duration_months, :interest, :amount)
     end
 end

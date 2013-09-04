@@ -4,9 +4,13 @@ class Deposit < ActiveRecord::Base
   validates :customer_id, presence: true
   validates :duration_months, presence: true, numericality: true, inclusion: [1, 3, 6, 12]
   validates :interest, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
-  validates :balance, presence: true, numericality: true
+  validates :amount, presence: true, numericality: true
 
-  def term
-    created_at + duration_months.months
-  end
+  before_create :set_term
+
+  private 
+    def set_term
+      self.term = Date.today + duration_months.months
+    end
+
 end
