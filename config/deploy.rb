@@ -28,7 +28,7 @@ namespace :deploy do
   end
 
   desc "Restart unicorn"
-  task :restart do
+  task :restart_unicorn do
     run "#{sudo} service unicorn restart"
   end
 
