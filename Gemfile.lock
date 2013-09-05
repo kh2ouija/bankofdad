@@ -111,6 +111,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rvm-capistrano (1.4.4)
+      capistrano (>= 2.15.4)
     sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -171,6 +173,7 @@ DEPENDENCIES
   newrelic_rpm
   quiet_assets
   rails (= 4.0.0)
+  rvm-capistrano
   sass-rails (~> 4.0.0)
   sdoc
   simplecov
