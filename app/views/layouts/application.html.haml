@@ -29,8 +29,8 @@
                 = link_to 'Home', customers_path
               %li
                 %a{href: '#'} About
-            %ul.nav.navbar-nav.navbar-right
-              - if user_signed_in?
+            - if user_signed_in?
+              %ul.nav.navbar-nav.navbar-right
                 %li.active
                   %a
                     %strong= current_user.email
@@ -41,13 +41,14 @@
                   = link_to destroy_user_session_path, method: :delete do
                     %span.glyphicon.glyphicon-log-out
                     = ' Sign out'
-              - else
-                %li
-                  = link_to new_user_session_path do
-                    %span.glyphicon.glyphicon-log-in
-                    = ' Sign in'
-                %li
-                  = link_to 'Register', new_user_registration_path
+            - else
+              = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'navbar-form navbar-right'}) do |f|
+                .form-group
+                  = f.email_field :email, class: 'form-control', placeholder: 'Email address'
+                .form-group
+                  = f.password_field :password, class: 'form-control', placeholder: 'Password'
+                = f.submit 'Sign in', class: 'btn btn-primary'
+                = link_to 'Register', new_user_registration_path, class: 'btn btn-success'
 
       .container
         - if notice
@@ -61,11 +62,7 @@
               &times;
             = alert
         = yield
-    #footer
-      .container
-        .p.text-muted.credit
-          &copy; 2013 
-          %a kh2ouija@yahoo.com
+
     %script{src: '//code.jquery.com/jquery.js'}
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
     %script{src: '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js'}
