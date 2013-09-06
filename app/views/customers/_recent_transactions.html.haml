@@ -1,27 +1,23 @@
-.panel.panel-default
-  .panel-heading
-    %h2.panel-title Recent transactions  
-  - if @recent_transactions.empty?
-    .panel-body No transactions found.
-  - else
-    %table.table.table-condensed
-      %thead
+- if @recent_transactions.empty?
+  No transactions found.
+- else
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Date
+        %th Amount        
+        %th Description
+        %th
+    %tbody
+      - @recent_transactions.each do |transaction|
         %tr
-          %th Date
-          %th Amount        
-          %th Description
-          %th
-      %tbody
-        - @recent_transactions.each do |transaction|
-          %tr
-            %td= transaction.created_at.to_s(:short_date)
-            %td{ class: transaction.operation == 'deposit' ? 'text-success' : 'text-danger' }= "#{transaction.operation == 'deposit' ? '+' : '-'}#{transaction.amount}"
-            %td= transaction.description
-            %td
-              - if transaction == @recent_transactions.first
-                = link_to customer_transaction_path(@customer, @last_transaction), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } do
-                  %span.glyphicon.glyphicon-trash
-    .panel-footer
-      = link_to customer_transactions_path(@customer), class: 'btn btn-info btn-sm' do
-        %span.glyphicon.glyphicon-th-list
-        = ' Transactions history'
+          %td= transaction.created_at.to_s(:short_date)
+          %td{ class: transaction.operation == 'deposit' ? 'text-success' : 'text-danger' }= "#{transaction.operation == 'deposit' ? '+' : '-'}#{transaction.amount}"
+          %td= transaction.description
+          %td
+            - if transaction == @recent_transactions.first
+              = link_to customer_transaction_path(@customer, @last_transaction), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } do
+                %span.glyphicon.glyphicon-trash
+  = link_to customer_transactions_path(@customer), class: 'btn btn-info btn-sm' do
+    %span.glyphicon.glyphicon-th-list
+    = ' Transactions history'

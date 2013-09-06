@@ -1,5 +1,6 @@
 = render 'breadcrumbs', breadcrumbs: {'Your customers' => nil}
-%h2 Your customers
+.page-header
+  %h1 Your customers
 - if @customers.empty?
   %p You have no customers.
 - else
@@ -25,6 +26,4 @@
             = link_to customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
               %span.glyphicon.glyphicon-trash
               = ' Delete'
-= link_to new_customer_path, class: 'btn btn-primary' do
-  %span.glyphicon.glyphicon-user
-  = ' New customer'
+= link_to 'New customer', new_customer_path, class: 'btn btn-primary'

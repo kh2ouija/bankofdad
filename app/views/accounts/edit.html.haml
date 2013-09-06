@@ -1,33 +1,35 @@
 = render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @account.customer.name => @customer, 'Account settings' => nil}
+.col-lg-3
+  = form_for(@account) do |f|
+    - if @account.errors.any?
+      .alert.alert-danger
+        %h2= pluralize(@account.errors.count, "error") + ' prohibited this account from being saved:'
 
-= form_for(@account) do |f|
-  - if @account.errors.any?
-    .alert.alert-danger
-      %h2= pluralize(@account.errors.count, "error") + ' prohibited this account from being saved:'
-
-      %ul
-      - @account.errors.full_messages.each do |msg|
-        %li= msg
-  %fieldset
-    %legend Interest
+        %ul
+        - @account.errors.full_messages.each do |msg|
+          %li= msg
+    /
+      %fieldset
+        %legend Interest
     .form-group
       = f.label :interest
       .input-group
         = f.text_field :interest, class: 'form-control'
         %span.input-group-addon %
 
-  %fieldset
-    %legend Allowance
-    = fields_for(@allowance) do |ff|
-      .form-group
-        = ff.label 'Every week on'
-        = ff.select :wday, Date::DAYNAMES.map { |d| [d, Date::DAYNAMES.index(d)]}, {}, { class: 'form-control' }
-      .form-group
-        = ff.label :amount
-        .input-group
-          = ff.text_field :amount, class: 'form-control'
-          %span.input-group-addon= @account.currency
+    /
+      %fieldset
+        %legend Allowance
+        = fields_for(@allowance) do |ff|
+          .form-group
+            = ff.label 'Every week on'
+            = ff.select :wday, Date::DAYNAMES.map { |d| [d, Date::DAYNAMES.index(d)]}, {}, { class: 'form-control' }
+          .form-group
+            = ff.label :amount
+            .input-group
+              = ff.text_field :amount, class: 'form-control'
+              %span.input-group-addon= @account.currency
 
-  %div
-    = f.submit 'Confirm', class: 'btn btn-primary'
-    = link_to 'Back', @account.customer, { class: 'btn btn-default' }
+    %div
+      = f.submit 'Confirm', class: 'btn btn-primary'
+      = link_to 'Back', @account.customer, { class: 'btn btn-default' }

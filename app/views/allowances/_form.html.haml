@@ -15,9 +15,7 @@
       = f.text_field :amount, class: 'form-control'
       %span.input-group-addon= @customer.account.currency
   %div
-    = content_tag :button, type: :submit, class: 'btn btn-primary' do
-      %span.glyphicon.glyphicon-ok
-      = ' Confirm'
+    = f.submit 'Confirm', class: 'btn btn-primary'
     = link_to 'Back', @customer, class: 'btn btn-default'
     - if delete_button
       = link_to 'Delete', customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right'

@@ -1,6 +1,10 @@
 %h2 Interest
-%h2{class: @customer.account.interest == 0 ? 'text-danger' : 'text-info'}= "#{@customer.account.interest}%"
-%hr
-= link_to edit_customer_account_path(@customer), class: 'btn btn-primary' do
-  %span.glyphicon.glyphicon-cog
-  = ' Account settings'
+- if @customer.account.interest == 0
+  %h2.text-danger 0%
+- else
+  %h2.text-info= "#{@customer.account.interest}%"
+  Next:
+  %br
+  %span.glyphicon.glyphicon-calendar
+  = Date::DAYNAMES[Date.today.next_month.beginning_of_month.wday]
+  = Date.today.next_month.beginning_of_month

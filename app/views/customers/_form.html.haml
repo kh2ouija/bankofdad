@@ -11,9 +11,7 @@
     = f.label :name 
     %br
     = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Customer\'s name'
-  = content_tag :button, type: :submit, class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-ok
-    = action
+  = f.submit 'Create', class: 'btn btn-primary'
   = link_to customers_path, { class: 'btn btn-default' } do
     %span.glyphicon.glyphicon-cancel
     = ' Cancel'

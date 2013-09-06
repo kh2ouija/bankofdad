@@ -1,11 +1,11 @@
-%h2 Allowance
+%h2 Allowance:
 - if @customer.allowance.amount == 0
   %h2.text-danger no
 - else
-  %h2.text-info= "#{@customer.allowance.amount} #{@customer.account.currency}"
-  on every
+  %h2.text-info
+    = "#{@customer.allowance.amount} #{@customer.account.currency}"
+  Next: 
+  %br
+  %span.glyphicon.glyphicon-calendar
   = Date::DAYNAMES[@customer.allowance.wday]
-%hr
-= link_to edit_customer_allowance_path(@customer), class: 'btn btn-primary' do
-  %span.glyphicon.glyphicon-cog
-  = ' Setup allowance'
+  = next_wday(@customer.allowance.wday)

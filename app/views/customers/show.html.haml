@@ -13,6 +13,16 @@
   .col-lg-4
     = render 'allowance'    
 
+%p
+
+.row
+  .col-lg-4
+    = render 'balance_btns'
+  .col-lg-4
+    = render 'interest_btns'
+  .col-lg-4
+    = render 'allowance_btns'
+
 .row
   .col-lg-12
     .page-header
@@ -31,4 +41,5 @@
   .col-lg-6
     = render 'deposits'
 
-= link_to 'Back to customers', customers_path, class: 'btn btn-default'
+%p
+  = link_to 'Back to customers', customers_path, class: 'btn btn-default'
