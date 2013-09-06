@@ -1,0 +1,9 @@
+%h2 Balance
+%h2{class: @customer.account.balance == 0 ? 'text-danger' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
+%hr
+= link_to new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success' do
+  %span.glyphicon.glyphicon-plus
+  = ' Deposit'
+= link_to new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-danger' do
+  %span.glyphicon.glyphicon-minus
+  = ' Withdraw'

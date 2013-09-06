@@ -1,27 +1,11 @@
-.panel.panel-default
-  .panel-body
-    - if @customer.allowance.nil?
-      %h4
-        Allowance:
-        %span
-          %strong no
-    - else
-      %h4
-        Allowance:
-        %span.text-info
-          %strong= "#{@customer.allowance.amount} #{@customer.account.currency}"
-      on every
-      %small.text-info
-      %strong= Date::DAYNAMES[@customer.allowance.wday]
-  .panel-footer
-    - if @customer.allowance.nil?
-      = link_to new_customer_allowance_path(@customer), class: 'btn btn-primary btn-sm' do
-        %span.glyphicon.glyphicon-cog
-        = ' Setup allowance'
-    - else
-      = link_to edit_customer_allowance_path(@customer, @allowance), class: 'btn btn-primary btn-sm' do
-        %span.glyphicon.glyphicon-cog
-        = ' Change'
-      = link_to customer_allowance_path(@customer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do
-        %span.glyphicon.glyphicon-remove
-        = ' Cancel'
+%h2 Allowance
+- if @customer.allowance.amount == 0
+  %h2.text-danger no
+- else
+  %h2.text-info= "#{@customer.allowance.amount} #{@customer.account.currency}"
+  on every
+  = Date::DAYNAMES[@customer.allowance.wday]
+%hr
+= link_to edit_customer_allowance_path(@customer), class: 'btn btn-primary' do
+  %span.glyphicon.glyphicon-cog
+  = ' Setup allowance'

@@ -1,9 +1,9 @@
 class Customer < ActiveRecord::Base
 
   belongs_to :user
-  has_one :account, dependent: :destroy
+  has_one :account, dependent: :destroy  
+  has_one :allowance, dependent: :destroy
   has_many :transactions
-  has_one :allowance
   has_many :deposits
 
   validates :name, presence: true, uniqueness: true

@@ -10,7 +10,7 @@ Bankofdad::Application.routes.draw do
   
   resources :customers, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :transactions, only: [:index, :new, :create, :destroy]
-    resource :allowance, only: [:new, :create, :edit, :update, :destroy]
+    resource :allowance, only: [:edit, :update]
     resources :deposits, only: [:new, :create, :destroy]
   end
 

@@ -12,7 +12,6 @@ class Account < ActiveRecord::Base
   def self.default
     Account.new do |a|
       a.balance = 0
-      a.currency = 'lei'
       a.interest = 0
     end
   end
@@ -40,6 +39,10 @@ class Account < ActiveRecord::Base
   def withdraw(amount)
     raise InsufficientFunds if balance < amount
     self.balance -= amount
+  end
+
+  def currency
+    customer.user.currency
   end
   
 end

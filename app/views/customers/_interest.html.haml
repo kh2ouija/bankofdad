@@ -1,0 +1,6 @@
+%h2 Interest
+%h2{class: @customer.account.interest == 0 ? 'text-danger' : 'text-info'}= "#{@customer.account.interest}%"
+%hr
+= link_to edit_customer_account_path(@customer), class: 'btn btn-primary' do
+  %span.glyphicon.glyphicon-cog
+  = ' Account settings'

@@ -1,11 +1,34 @@
 = render 'breadcrumbs', breadcrumbs: {'Customers' => customers_path, @customer.name => nil}
 
 .row
-  .col-md-6
-    = render 'account'
-    = render 'allowance'
-  .col-md-6
+  .col-lg-12
+    .page-header
+      %h1= "#{@customer.name}'s account"
+
+.row
+  .col-lg-4
+    = render 'balance'    
+  .col-lg-4
+    = render 'interest'
+  .col-lg-4
+    = render 'allowance'    
+
+.row
+  .col-lg-12
+    .page-header
+      %h2 Recent transactions
+
+.row
+  .col-lg-12
     = render 'recent_transactions'
-= render 'deposits'
+
+.row
+  .col-lg-12
+    .page-header
+      %h2 Savings
+
+.row
+  .col-lg-6
+    = render 'deposits'
 
 = link_to 'Back to customers', customers_path, class: 'btn btn-default'

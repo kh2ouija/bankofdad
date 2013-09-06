@@ -4,9 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_timezone
-
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  
   def set_timezone
     tz = request.cookies['jstz_time_zone']
     Time.zone = tz unless tz.nil?
   end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) do |u| 
+      u.permit :email, :password, :password_confirmation, :current_password, :currency
+    end
+  end
+
 end

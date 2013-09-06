@@ -24,18 +24,14 @@ class CustomersController < ApplicationController
 
   # POST /customers
   def create
-    @customer = Customer.new(customer_params)
-    @customer.user = current_user
-    account = Account.default
-    account.customer = @customer
-    begin
-      Customer.transaction do
-        @customer.save!
-        account.save!
-        redirect_to @customer, notice: 'Customer was successfully created.'
-      end
-    rescue ActiveRecord::RecordInvalid => e
-      puts e
+    customer = Customer.new(customer_params)
+    customer.user = current_user
+    customer.account = Account.default
+    customer.allowance = Allowance.default
+    puts "------> #{customer.allowance.wday}"
+    if customer.save
+      redirect_to customer, notice: 'Customer was successfully created.'    
+    else
       render action: 'new'
     end
   end

@@ -1,26 +1,9 @@
-.panel.panel-default.panel-primary
-  .panel-heading
-    %h3.panel-title= "#{@customer.name}'s account"
-  .panel-body
-    %h3
-      Balance:
-      %strong{class: @customer.account.balance == 0 ? '' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
-    - if @customer.account.interest == 0
-      + 
-      %strong.text-info no
-      interest
-    -else
-      %small= '+ '
-      %small.text-info
-        %strong= "#{@customer.account.interest}%"
-      %small monthly interest
-  .panel-footer
-    = link_to new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm' do
-      %span.glyphicon.glyphicon-plus
-      = ' Deposit'
-    = link_to new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-danger btn-sm' do
-      %span.glyphicon.glyphicon-minus
-      = ' Withdraw'
-    = link_to edit_customer_account_path(@customer), class: 'btn btn-primary btn-sm pull-right' do
-      %span.glyphicon.glyphicon-cog
-      = ' Account settings'
+%h2
+  Balance:
+  %strong{class: @customer.account.balance == 0 ? '' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
+= link_to new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success btn-sm' do
+  %span.glyphicon.glyphicon-plus
+  = ' Deposit'
+= link_to new_customer_transaction_path(@customer, params: { operation: 'withdraw' }), class: 'btn btn-danger btn-sm' do
+  %span.glyphicon.glyphicon-minus
+  = ' Withdraw'

@@ -6,6 +6,7 @@ class AccountsController < ApplicationController
   def edit
     @page_title = 'Account settings'
     @account = current_user.customers.find_by_name(params[:id]).account
+    @allowance = current_user.customers.find_by_name(params[:id]).allowance
   end
 
   # PATCH /customers/1/account
