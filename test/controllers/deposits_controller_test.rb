@@ -13,7 +13,7 @@ class DepositsControllerTest < ActionController::TestCase
 
   test "should create deposit" do
     assert_difference('Deposit.count') do
-      post :create, customer_id: @deposit.customer, deposit: { balance: @deposit.balance, customer: @deposit.customer, duration_months: @deposit.duration_months, interest: @deposit.interest }
+      post :create, customer_id: @deposit.customer, deposit: { amount: @deposit.amount, customer: @deposit.customer, duration_months: @deposit.duration_months, interest: @deposit.interest }
     end
 
     assert_redirected_to @deposit.customer

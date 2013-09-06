@@ -4,4 +4,5 @@ one:
   customer: one
   duration_months: 3
   interest: 10
-  balance: 9.99
+  amount: 9.99
+  term: '2013-11-11 22:31:20'

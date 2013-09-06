@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
     customer.user = current_user
     customer.account = Account.default
     customer.allowance = Allowance.default
-    puts "------> #{customer.allowance.wday}"
     if customer.save
       redirect_to customer, notice: 'Customer was successfully created.'    
     else

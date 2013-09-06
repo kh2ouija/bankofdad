@@ -3,5 +3,4 @@
 one:
   customer: one
   balance: 9.99
-  currency: lei
   interest: 5

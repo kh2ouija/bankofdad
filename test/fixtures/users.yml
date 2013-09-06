@@ -3,3 +3,4 @@
 one:
   email: john@doe.com
   confirmed_at: '2013-08-29 22:31:20'
+  currency: lei
