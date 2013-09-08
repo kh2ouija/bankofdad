@@ -4,8 +4,9 @@
 - else
   %h2.text-info
     = "#{@customer.allowance.amount} #{@customer.account.currency}"
-  Next: 
+  Next on: 
   %br
   %span.glyphicon.glyphicon-calendar
-  = Date::DAYNAMES[@customer.allowance.wday]
-  = next_wday(@customer.allowance.wday)
+  %strong
+    = "#{Date::DAYNAMES[@customer.allowance.wday]},"
+    = next_wday(@customer.allowance.wday)
