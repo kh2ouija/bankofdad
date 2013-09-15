@@ -4,9 +4,13 @@
 - else
   %h2.text-info
     = "#{@customer.allowance.amount} #{@customer.account.currency}"
-  Next on: 
-  %br
-  %span.glyphicon.glyphicon-calendar
-  %strong
-    = "#{Date::DAYNAMES[@customer.allowance.wday]},"
-    = next_wday(@customer.allowance.wday)
+  %p
+    Next on: 
+    %br
+    %span.glyphicon.glyphicon-calendar
+    %strong
+      = "#{Date::DAYNAMES[@customer.allowance.wday]},"
+      = next_wday(@customer.allowance.wday)
+= link_to edit_customer_allowance_path(@customer), class: 'btn btn-primary' do
+  %span.glyphicon.glyphicon-cog
+  = ' Setup allowance'
