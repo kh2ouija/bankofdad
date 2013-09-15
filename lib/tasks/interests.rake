@@ -9,7 +9,7 @@ namespace :bod do
           t.amount = account.balance * account.interest / 100.0
           t.description = "Monthly interest of #{account.interest}%"
         end
-        account.customer.record(transaction)
+        account.apply(transaction)
         puts "Deposited #{transaction.amount} #{account.currency} into #{transaction.customer.name}'s account."
       rescue Exception => e
         puts "Error recording interest for #{account.customer.name}:"

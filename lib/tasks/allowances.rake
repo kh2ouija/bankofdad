@@ -9,7 +9,7 @@ namespace :bod do
           t.amount = allowance.amount
           t.description = "#{Date::DAYNAMES[Date.today.wday]}\' s allowance"
         end
-        allowance.customer.record(transaction)
+        allowance.customer.account.apply(transaction)
         puts "Deposited #{transaction.amount} #{allowance.customer.account.currency} into #{transaction.customer.name}'s account."
       rescue Exception => e
         puts "Error recording allowance for #{allowance.customer.name}:"

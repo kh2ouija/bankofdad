@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20130901094757) do
   end
 
   create_table "transactions", force: true do |t|
-    t.integer  "customer_id",                         null: false
+    t.integer  "account_id",                          null: false
     t.string   "operation",                           null: false
     t.decimal  "amount",      precision: 8, scale: 2, null: false
     t.decimal  "rbalance",    precision: 8, scale: 2, null: false

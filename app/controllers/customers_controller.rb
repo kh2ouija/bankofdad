@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1
   def show
-    @recent_transactions = Transaction.where(customer: @customer).order('created_at DESC').limit(3)
+    @recent_transactions = Transaction.where(account: @customer.account).order('created_at DESC').limit(3)
     if @customer.account.interest > 0
       @next_interest_date = Date.today + (6 - Date.today.wday)  
     end

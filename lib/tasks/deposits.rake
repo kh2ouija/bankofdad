@@ -9,7 +9,7 @@ namespace :bod do
           t.description = 'Deposit maturity'
         end
         begin
-          deposit.customer.record(transaction)
+          deposit.customer.account.apply(transaction)
           deposit.destroy!
           puts "Deposited #{transaction.amount} #{transaction.customer.account.currency} into #{transaction.customer.name}'s account."
         rescue Exception => e

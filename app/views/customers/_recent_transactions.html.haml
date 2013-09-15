@@ -17,7 +17,7 @@
           %td= transaction.description
           %td
             - if transaction == @recent_transactions.first
-              = link_to customer_transaction_path(@customer, @last_transaction), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } do
+              = link_to customer_transaction_path(@customer, transaction), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } do
                 %span.glyphicon.glyphicon-trash
   = link_to customer_transactions_path(@customer), class: 'btn btn-info btn-sm' do
     %span.glyphicon.glyphicon-th-list

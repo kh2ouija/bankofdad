@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   def index
     @page_title = 'Transactions history'
-    @transactions = @customer.transactions.order('created_at DESC')
+    @transactions = @customer.account.transactions.order('created_at DESC')
   end
 
   # GET /transactions/new
@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     begin
-      @customer.record(@transaction)
+      @customer.account.apply(@transaction)
       redirect_to customer_path(@customer), notice: 'Transaction was successfully created.'
     rescue Exception => e
       puts e
@@ -31,9 +31,9 @@ class TransactionsController < ApplicationController
 
   # DELETE /transactions/1
   def destroy
-    @transaction = @customer.transactions.find(params[:id])
+    @transaction = @customer.account.transactions.find(params[:id])
     begin
-      @customer.undo(@transaction)
+      @customer.account.undo(@transaction)
       redirect_to @customer
     rescue Exception => e
       puts e

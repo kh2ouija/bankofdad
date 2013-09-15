@@ -18,7 +18,7 @@ class DepositsController < ApplicationController
         t.description = 'Creating term deposit'
       end
       Deposit.transaction do
-        @customer.record(transaction)
+        @customer.account.apply(transaction)
         @deposit.save!
       end
       redirect_to @customer, notice: 'Deposit was successfully created.'
@@ -39,7 +39,7 @@ class DepositsController < ApplicationController
         t.description = 'Early canceling term deposit'
       end
       Deposit.transaction do
-        @deposit.customer.record(transaction)
+        @deposit.customer.account.apply(transaction)
         @deposit.destroy!
       end      
     rescue Exception => e

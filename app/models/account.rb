@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
 
   belongs_to :customer
+  has_many :transactions
 
   validates :currency, presence: true
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
@@ -17,10 +18,15 @@ class Account < ActiveRecord::Base
   end
 
   def apply(transaction)
+    transaction.account = self
     if transaction.operation == 'deposit'
       self.deposit(transaction.amount)
     elsif transaction.operation == 'withdraw'
       self.withdraw(transaction.amount)
+    end
+    Account.transaction do
+      self.save!
+      transaction.save!
     end
   end
 
@@ -29,6 +35,10 @@ class Account < ActiveRecord::Base
       self.withdraw(transaction.amount)
     elsif transaction.operation == 'withdraw'
       self.deposit(transaction.amount)
+    end
+    Account.transaction do
+      self.save!
+      transaction.destroy!
     end
   end
 
