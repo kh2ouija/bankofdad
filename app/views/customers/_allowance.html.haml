@@ -1,16 +1,18 @@
-%h2 Allowance:
-- if @customer.allowance.amount == 0
-  %h2.text-danger no
-- else
-  %h2.text-info
-    = "#{@customer.allowance.amount} #{@customer.account.currency}"
-  %p
-    Next on: 
-    %br
-    %span.glyphicon.glyphicon-calendar
-    %strong
+.panel.panel-default
+  .panel-body
+
+    %h4
+      Weekly allowance:
+      - if @customer.allowance.amount == 0
+        %strong.text-danger no
+      - else
+        %strong.text-success= "#{@customer.allowance.amount} #{@customer.account.currency}"
+    - if @customer.allowance.amount != 0
+      %span.glyphicon.glyphicon-calendar
+      Next on
       = "#{Date::DAYNAMES[@customer.allowance.wday]},"
       = next_wday(@customer.allowance.wday)
-= link_to edit_customer_allowance_path(@customer), class: 'btn btn-primary' do
-  %span.glyphicon.glyphicon-cog
-  = ' Setup allowance'
+    %p
+    = link_to edit_customer_allowance_path(@customer), class: 'btn btn-primary btn-xs' do
+      %span.glyphicon.glyphicon-cog
+      = ' Setup allowance'

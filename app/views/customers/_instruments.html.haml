@@ -12,12 +12,16 @@
         Checking account
       %td= "#{@customer.account.balance} #{@customer.account.currency}"
       %td
-        = "#{@customer.account.interest}%"
+        = "#{@customer.account.interest}% monthly"
         = link_to edit_customer_account_path(@customer), class: 'btn btn-primary btn-xs' do
           %span.glyphicon.glyphicon-cog
           = ' Change'
       %td indefinite
       %td
+        = link_to new_customer_deposit_path(@customer), class: 'btn btn-primary btn-xs' do
+          %span.glyphicon.glyphicon-time
+          = ' Create term deposit'
+
     - @customer.deposits.each do |deposit|
       %tr
         %td
@@ -25,13 +29,10 @@
           Term deposit 
           = deposit.duration_months == 12 ? '(1 year)' : "(#{pluralize(deposit.duration_months, 'month')})"
         %td= "#{deposit.amount} #{deposit.customer.account.currency}"
-        %td= "#{deposit.interest}%"
+        %td= "#{deposit.interest}% at term"
         %td= deposit.term.to_s(:short_date)
         %td
           = link_to customer_deposit_path(@customer, deposit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
             %span.glyphicon.glyphicon-trash
             = ' Cancel'
 %br
-= link_to new_customer_deposit_path(@customer), class: 'btn btn-primary btn-sm' do
-  %span.glyphicon.glyphicon-time
-  = ' Create term deposit'
