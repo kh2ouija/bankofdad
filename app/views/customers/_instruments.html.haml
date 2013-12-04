@@ -12,15 +12,13 @@
         Checking account
       %td= "#{@customer.account.balance} #{@customer.account.currency}"
       %td
-        = "#{@customer.account.interest}% monthly"
+        = "#{@customer.account.interest}% monthly"        
+      %td indefinite
+      %td 
         = link_to edit_customer_account_path(@customer), class: 'btn btn-primary btn-xs' do
           %span.glyphicon.glyphicon-cog
-          = ' Change'
-      %td indefinite
-      %td
-        = link_to new_customer_deposit_path(@customer), class: 'btn btn-primary btn-xs' do
-          %span.glyphicon.glyphicon-time
-          = ' Create term deposit'
+          = 'Setup interest'
+        
 
     - @customer.deposits.each do |deposit|
       %tr
@@ -35,4 +33,8 @@
           = link_to customer_deposit_path(@customer, deposit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
             %span.glyphicon.glyphicon-trash
             = ' Cancel'
+
+= link_to new_customer_deposit_path(@customer), class: 'btn btn-primary btn-sm' do
+  %span.glyphicon.glyphicon-time
+  = ' Create term deposit'
 %br

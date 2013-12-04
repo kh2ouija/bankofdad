@@ -1,9 +1,10 @@
-= render 'breadcrumbs', breadcrumbs: {'Your customers' => nil}
+= render 'breadcrumbs', breadcrumbs: {'Your bank' => nil}
 .page-header
   %h1 Your customers
 - if @customers.empty?
-  %p You have no customers.
+  %p.well You have no customers.
 - else
+  %p.well= "You are managing the money of #{pluralize(@customers.size, 'customer')}"
   %table.table
     %thead
       %tr

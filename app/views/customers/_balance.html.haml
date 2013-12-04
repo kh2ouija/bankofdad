@@ -1,7 +1,7 @@
 .panel.panel-default
   .panel-body
 
-    %h2 Balance
+    %h3 Balance
     %h2{class: @customer.account.balance == 0 ? '' : 'text-success'}= "#{@customer.account.balance} #{@customer.account.currency}"
     = link_to new_customer_transaction_path(@customer, params: { operation: 'deposit' }), class: 'btn btn-success' do
       %span.glyphicon.glyphicon-plus
